@@ -1,0 +1,11 @@
+@import "_colors";
+
+.h-20 {
+  height: 6rem;
+}
+.logo-link {
+  svg {
+    display: block;
+    fill: $airbnb-logo;
+  }
+}
