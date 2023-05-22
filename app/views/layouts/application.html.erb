@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Coffe House&Party -Airbnb </title>
+    <title>Coffee House&Party - Airbnb</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="stylesheet" href="/assets/tailwind.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.x.x/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -19,6 +21,6 @@
   <body>
     <%= render "layouts/header" %>
     <%= yield %>
-
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   </body>
 </html>

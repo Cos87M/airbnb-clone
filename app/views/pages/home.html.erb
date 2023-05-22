@@ -1,4 +1,4 @@
-<br>
+<%# <br>
 <div
   @click.away="open = false"
   class="relative"
@@ -40,7 +40,8 @@
   </div>
 </div>
 <!-- This is an example component -->
-<%# <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.x.x/dist/tailwind.min.css" rel="stylesheet">
 
 <div class='flex items-center justify-center min-h-screen'>
     <nav class="hidden -mt-32 space-x-10 md:flex">
@@ -115,3 +116,10 @@
         </div>
     </nav>
 </div> %>
+
+<div x-data="{ message: 'Hello, Alpine.js!' }">
+  <button x-on:click="message = 'Button clicked!'">
+    Click me
+  </button>
+  <p x-text="message"></p>
+</div>
