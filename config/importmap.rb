@@ -10,3 +10,4 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 # pin "alpinejs", to: "https://ga.jspm.io/npm:alpinejs@3.12.1/dist/module.esm.js"
 
 # pin "alpine-turbo-drive-adapter", to: "https://ga.jspm.io/npm:alpine-turbo-drive-adapter@2.0.0/dist/alpine-turbo-drive-adapter.esm.js"
+pin "el-transition", to: "https://ga.jspm.io/npm:el-transition@0.0.7/index.js"
