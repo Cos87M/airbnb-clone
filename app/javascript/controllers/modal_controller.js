@@ -16,11 +16,16 @@ export default class extends Controller {
   closeModal(event) {
     const modalPanelClicked =document.getElementById('modal-panel').contains(event.target);
 
-    if(!modalPanelClicked) {
+    if(!modalPanelClicked && event.target.id !== "modal-trigger") {
       leave(document.getElementById('modal-wrapper'));
       leave(document.getElementById('modal-backdrop'));
       leave(document.getElementById('modal-panel'));
     }
   }
+  // showModal () {
+  //   enter(document.getElementById('modal-wrapper'));
+  //   enter(document.getElementById('modal-backdrop'));
+  //   enter(document.getElementById('modal-panel'));
+  // }
 
 }

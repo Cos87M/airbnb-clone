@@ -6,7 +6,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "pages#home"
 
-  get '/tailwindcss/base', to: redirect('/path/to/application.scss')
-  get '/tailwindcss/components', to: redirect('/path/to/components.css')
-  get '/tailwindcss/utilities', to: redirect('/path/to/utilities.css')
+
 end
