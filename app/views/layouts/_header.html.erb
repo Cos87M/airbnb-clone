@@ -1,5 +1,5 @@
 
-<nav class="bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20" data-controller="header">
+<nav class="bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
   <!-- logo -->
   <div class="nav-container inline-flex">
       <a class="_o6689fn" href="/"
@@ -51,7 +51,7 @@
   <!-- end search bar -->
 
   <!-- login -->
-  <div class="flex-initial">
+  <div class="flex-initial" data-controller="header">
 
     <div class="flex justify-end items-center relative">
 
@@ -114,10 +114,10 @@
               tabindex="-1"
               id="menu-dropdown-items"
         >
-          <div px-2 py-2 bg-white rounded-md shadow divide-y divide-gray-100>
-            <a href="#" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" > Sign up</a>
-            <a href="#" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >Log in</a>
-            <a href="#" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >Log out</a>
+          <div role="none" class="px-2 py-2 bg-white rounded-md shadow divide-y divide-gray-100">
+            <a href="#" data-header-target="userAuthLink" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" > Sign up</a>
+            <a href="#" data-header-target="userAuthLink" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >Log in</a>
+            <a href="#" data-header-target="userAuthLink" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >Log out</a>
           </div>
 
         </div>

@@ -1,19 +1,25 @@
 <!-- Modal -->
-<div class="relative z-10"
+<div class="hidden relative z-10"
     data-controller="modal"
     id="modal-wrapper"
 
     aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <%# <div class="hidden" id="modal-trigger" data-action="click->modal#showModal"></div> %>
-<!-- modal content -->
-  <div id="modal-backdrop" class="hidden flex  rounded-lg shadow-lg overflow-hidden mx-auto items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0"
+
+  <div class="hidden" id="modal-trigger" data-action="click->modal#showModal" ></div>
+
+        <!-- Background backdrop, show/hide base on modal state -->
+
+  <div id="modal-backdrop"
+        class="flex  rounded-lg shadow-lg overflow-hidden mx-auto items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0"
         x-transition:enter="transition ease-out duration-300 transform"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
         x-transition:leave="transition ease-in duration-200 transform"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="fixed inset-0 transition-opacity bg-red-200 bg-opacity-40">
+        class="hidden fixed inset-0 transition-opacity bg-red-200 bg-opacity-40">
+
+        <!-- Modal panel, show/hide based on modal state -->
 
         <div id="modal-panel"
           x-transition:enter="transition ease-out duration-300 transform"
