@@ -1,283 +1,168 @@
-<%# <div
-	x-data="{ modalIsVisible: false }"
-	class="flex flex-col min-h-screen bg-gradient-to-r from-yellow-600 to-yellow-700"
->
-	<div class="m-auto flex flex-col items-center">
-		<h1 class="inline-block text-white text-4xl font-bold">
-			Alpine.js modal
-		</h1>
+<!-- Modal -->
+<div class="hidden relative z-10"
+    data-controller="modal"
+    id="modal-wrapper"
 
-		<!-- Toggle button -->
-		<button
-			type="button"
-			@click="modalIsVisible = true"
-			class="mt-6 inline-block bg-white px-8 py-4 rounded shadow-md text-yellow-600 font-bold uppercase cursor-pointer"
-		>
-			Open the modal !
-		</button>
+    aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
-		<!-- Modal -->
-		<div x-show="modalIsVisible">
-			<div class="fixed top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 px-14 py-14 bg-white rounded shadow z-20">
-				<p class="text-lg text-center">
-					Here is a beautiful modal based on Alpine.js and Tailwind CSS !
-				</p>
+  <div class="hidden" id="modal-trigger" data-action="click->modal#showModal" ></div>
 
-				<!-- Close modal button -->
-				<button
-					type="button"
-					@click="modalIsVisible = false"
-					@click.away="modalIsVisible = false"
-					class="absolute top-4 right-4"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						fill="currentColor"
-						class="w-6 h-6"
-						viewBox="0 0 16 16"
-					>
-					<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-					<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-					</svg>
-				</button>
-			</div>
+        <!-- Background backdrop, show/hide base on modal state -->
 
-			<!-- Modal overlay -->
-			<div class="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
-		</div>
-	</div>
-</div> %>
-    <!-- x-data defines a chunk of HTML as an Alpine component and provides data for that component to reference.
-         x-on:click.outside set’s the open data to false which will hide the dropdown when anywhere outside the component is clicked.-->
+  <div id="modal-backdrop"
+        class="flex  rounded-lg shadow-lg overflow-hidden mx-auto items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0"
+        x-transition:enter="transition ease-out duration-300 transform"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200 transform"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="hidden fixed inset-0 transition-opacity bg-red-200 bg-opacity-40">
 
+        <!-- Modal panel, show/hide based on modal state -->
 
+        <div id="modal-panel"
+          x-transition:enter="transition ease-out duration-300 transform"
+          x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+          x-transition:leave="transition ease-in duration-200 transform"
+          x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+          x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          class="hidden inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
 
-<%# <div x-data="{ open: false }" x-on:click.outside="open = false">
+            <p class="text-xl text-gray-600 text-center"> Welcome back!</p>
+            <a href="#" class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
+              <div class="text-center  py-2">
+                  <svg class="h-6 w-6" viewBox="0 0 40 40">
+                      <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107"/>
+                      <path d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z" fill="#FF3D00"/>
+                      <path d="M20 36.6667C24.305 36.6667 28.2167 35.0192 31.1742 32.34L26.0159 27.975C24.3425 29.2425 22.2625 30 20 30C15.665 30 11.9842 27.2359 10.5975 23.3784L5.16254 27.5659C7.92087 32.9634 13.5225 36.6667 20 36.6667Z" fill="#4CAF50"/>
+                      <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#1976D2"/>
+                  </svg>
+              </div>
+              <h1 class="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Google</h1>
+            </a>
+            <div class="mt-4 flex items-center justify-between">
+                <span class="border-b w-1/5 lg:w-1/4"></span>
+                <a href="#" class="text-xs text-center text-gray-500 uppercase">or login with email</a>
+                <span class="border-b w-1/5 lg:w-1/4"></span>
+            </div>
+            <div class="mt-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
+                <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" name="email" id="email" placeholder="user.email@gmail.com">
+            </div>
+            <div class="mt-4">
+                <div class="flex justify-between">
+                  <form>
 
-   <!--x-on:click this time we’re only tracking clicks directly on the button itself.-->
-  <button x-on:click="open = !open">
-    My Account
-    <span :class="{'rotated': open}">&raquo;</span>
-  </button>
+                    <div class="hidden">
+                      <label for="username" class="block text-gray-700  font-bold mb-2">Username:</label>
+                      <input type="text" id="name" name="name" autocomplete="username" >
+                    </div>
 
-  <!--When open equals true the x-show attribute will change the visibility of the <ul> element
-      add a transition so the opening and closing of the dropdown appears smoother-->
-  <ul x-show="open" x-transition.opacity>
-    <li><a href="#">Edit Profile</a></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">Log Out</a></li>
-  </ul>
+                    <div>
+                      <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+                      <input type="password" id="password" name="password" autocomplete="new-password">
+                    </div>
 
-
-</div> %>
-
-
-
-<%# <div x-data="{ tab: 'description' }">
- <!-- nav -->
-  <nav>
-    <a :class="{ 'active': tab === 'description' }" x-on:click.prevent="tab = 'description'" href="#">Description</a>
-    <a :class="{ 'active': tab === 'dimensions' }" x-on:click.prevent="tab = 'dimensions'" href="#">Dimensions</a>
-    <a :class="{ 'active': tab === 'reviews' }" x-on:click.prevent="tab = 'reviews'" href="#">Reviews</a>
-  </nav>
- <!-- content -->
-  <div x-show="tab === 'description'">
-    <h3>Description</h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus
-      facilisis tristique. Lorem ipsum dolor sit amet, consectetur adipiscing
-      elit.
-    </p>
-  </div>
-  <div x-show="tab === 'dimensions'">
-    <h3>Dimensions</h3>
-    <p>
-      Donec placerat ullamcorper sodales. Nam congue justo sit amet erat luctus
-      faucibus.
-    </p>
-  </div>
-  <div x-show="tab === 'reviews'">
-    <h3>Reviews</h3>
-    <p>
-      Sed hendrerit imperdiet accumsan. Nunc venenatis sit amet diam vel rutrum.
-      Quisque interdum dui et molestie tristique.
-    </p>
-  </div>
-
-</div> %>
-
-<br>
-
-<%# <nav
-  aria-labelledby="nav-heading"
-  x-data="{ isOpen: false }"
-  :aria-expanded="isOpen"
->
-  <h2 id="nav-heading">Alpine.js Accessible Navigation</h2>
-  <button
-    :aria-expanded="isOpen"
-    aria-controls="nav-list"
-    @click="isOpen = !isOpen"
-  >
-    See Alpine Resources
-  </button>
-  <ul :hidden="!isOpen" id="nav-list">
-    <li>
-      <a href="https://github.com/alpinejs/alpine">Alpine.js Docs</a>
-    </li>
-    <li>
-      <a href="https://github.com/alpinejs/awesome-alpine"
-        >Awesome Alpine.js list</a
-      >
-    </li>
-    <li>
-      <a href="https://alpinejs.codewithhugo.com/newsletter"
-        >Alpine.js Weekly Newsletter</a
-      >
-    </li>
-  </ul>
-</nav> %>
-
-<br>
-
-<%# <div
-  x-data="{
-    caption: 'Random image from picsum.photos',
-    src: 'https://picsum.photos/250/250',
-    width: '250'
-  }"
->
-  <figure>
-    <img x-bind:width="width" x-bind:src="src" x-bind:alt="caption" />
-    <figcaption>
-      <span x-text="caption"></span> (<a x-bind:href="src" x-text="src"></a>)
-    </figcaption>
-  </figure>
-</div> %>
-
-<br>
-
-<%# <div x-data="{}" x-subscribe>
-    <div x-show="$store.modal.open === 'login'">
-    <p>
-      This "login" modal isn't built with a11y in mind, don't actually use it
-    </p>
+                    <div>
+                      <label class="block text-gray-700 text-sm font-bold mb-2">Reset Password</label><br>
+                      <a href="#" class="text-xs text-gray-500">Forget Password?</a>
+                      <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password" autocomplete="new-password">
+                    </div>
+                  </form>
+                </div>
+            </div>
+            <div class="mt-8">
+                <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login</button>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+                <span class="border-b w-1/5 md:w-1/4"></span>
+                <a href="#" class="text-xs text-gray-500 uppercase">or sign up</a>
+                <span class="border-b w-1/5 md:w-1/4"></span>
+            </div>
+        </div>
     </div>
 </div>
-<div x-data="{}" x-subscribe>
-    <div x-show="$store.modal.open === 'register'">
-    <p>
-      This "register" modal isn't built with a11y in mind, don't actually use it
-    </p>
-    </div>
-</div>
-<div x-data="{}" x-subscribe>
-  <select x-model="$store.modal.open">
-    <option value="login" selected>login</option>
-    <option value="register">register</option>
-  </select>
-</div>
-<script>
-  Spruce.store('modal', {
-    open: 'login',
-  });
-</script> %>
+
 
 
 <!--Modal -->
 
-<div x-data="{ showModal: false }">
+<%# <template x-if="showModal">
+    <div  class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div class="flex  items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+        <!--
+          Background backdrop, show/hide based on modal state.
+          Entering: "ease-out duration-300"ß
+          From: "opacity-0"
+          To: "opacity-100"
+          Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+          -->
+        <div @click="showModal = false"
+          x-transition:enter="transition ease-out duration-300 transform"
+          x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100"
+          x-transition:leave="transition ease-in duration-200 transform"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+          class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"
+        ></div>
+                <!--
+                Modal panel, show/hide based on modal state.
+                Entering: "ease-out duration-300*
+                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                To: "opacity-100 translate-y-0 sm:scale-100"
+                Leaving: "ease-in duration-200"
+                From: "opacity-100 translate-y-0 sm:scale-100"
+                To: "opacity-0 translate-v-4 sm:translate-v-0 sm:scale-95"
+                -->
 
-  <button  @click="showModal = true" class="px-2 py-2 bg-white rounded-md shadow divide-y divide-gray-100">
-    <%# <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-      <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-    </svg> %>
-    <span>Log in </span>
-  </button>
+              <div  x-cloak
+                  x-transition:enter="transition ease-out duration-300 transform"
+                  x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                  x-transition:leave="transition ease-in duration-200 transform"
+                  x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                  x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+              >
+                <div  class="flex items-center justify-between space-x-4">
+                    <h1 class="text-xl font-medium text-gray-800 ">Log in form</h1>
 
-
-  <template x-if="showModal">
-      <div  class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex  items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-          <!--
-            Background backdrop, show/hide based on modal state.
-            Entering: "ease-out duration-300"
-            From: "opacity-0"
-            To: "opacity-100"
-            Leaving: "ease-in duration-200"
-            From: "opacity-100"
-            To: "opacity-0"
-            -->
-          <div @click="showModal = false"
-            x-transition:enter="transition ease-out duration-300 transform"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition ease-in duration-200 transform"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"
-          ></div>
-
-
-                  <!--
-                  Modal panel, show/hide based on modal state.
-                  Entering: "ease-out duration-300*
-                  From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  To: "opacity-100 translate-y-0 sm:scale-100"
-                  Leaving: "ease-in duration-200"
-                  From: "opacity-100 translate-y-0 sm:scale-100"
-                  To: "opacity-0 translate-v-4 sm:translate-v-0 sm:scale-95"
-                  -->
-
-
-
-                <div  x-cloak
-                    x-transition:enter="transition ease-out duration-300 transform"
-                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                    x-transition:leave="transition ease-in duration-200 transform"
-                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
-                >
-                  <div  class="flex items-center justify-between space-x-4">
-                      <h1 class="text-xl font-medium text-gray-800 ">Log in form</h1>
-
-                      <button @click="showModal = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                      </button>
-                  </div>
-
-                  <p class="mt-2 text-sm text-gray-500 ">
-                      Hello, you can log in here
-                  </p>
-
-                  <form class="mt-5">
-                      <div>
-                          <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">User name</label>
-                          <input placeholder="Cris Pato" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                      </div>
-
-                      <div class="mt-4">
-                          <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">User email</label>
-                          <input placeholder="crispato@example.app" type="email" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                      </div>
-
-
-                      <div class="flex justify-end mt-6">
-                          <button type="button" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
-                              Confirm
-                          </button>
-                      </div>
-                  </form>
+                    <button @click="showModal = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </button>
                 </div>
-            </div>
-        </div>
-      </div>
-  </template>
 
-</div>
+                <p class="mt-2 text-sm text-gray-500 ">
+                    Hello, you can log in here
+                </p>
+
+                <form class="mt-5">
+                    <div>
+                        <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">User name</label>
+                        <input placeholder="Cris Pato" type="text" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">User email</label>
+                        <input placeholder="crispato@example.app" type="email" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                    </div>
+
+
+                    <div class="flex justify-end mt-6">
+                        <button type="button" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
+                            Confirm
+                        </button>
+                    </div>
+                </form>
+              </div>
+          </div>
+      </div>
+    </div>
+</template> %>
