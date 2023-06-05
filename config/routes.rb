@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "pages#home"
 
-  resources :users, only: :show
+    resources :users, only: :show
+
+      get "/users_by_email" => "users_by_emails#show", as: :users_by_email
 
 
 end
