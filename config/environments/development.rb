@@ -71,4 +71,8 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # It prevent sprockets of using sass mode and SaaaC gem in assets:precompile step
+  # To prevent an error caused by the sassc-rails gem
+  config.assets.css_compressor =nil
 end

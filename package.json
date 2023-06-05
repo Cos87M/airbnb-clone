@@ -1,0 +1,14 @@
+{
+  "name": "airbnb-clone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Cos87M/airbnb-clone.git",
+  "author": "Cos87M <mihaiadriancosmin@yahoo.com>",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "webpack": "^5.85.0"
+  }
+}

@@ -88,6 +88,10 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # It prevent sprockets of using sass mode and SaaaC gem in assets:precompile step
+  # To prevent an error caused by the sassc-rails gem
+  config.assets.css_compressor =nil
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

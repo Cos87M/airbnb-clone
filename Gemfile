@@ -73,3 +73,6 @@ end
 gem "devise"
 
 gem "sassc-rails"
+
+gem 'webpacker'
+gem "simple_form", github: "heartcombo/simple_form"
