@@ -9,3 +9,15 @@
     fill: $airbnb-logo;
   }
 }
+.invalid-input-text-field {
+  border-color: rgba(244, 63, 94, 0.9) !important;
+  label {
+    color: rgba(244, 63, 94, 0.9) !important;
+  }
+  input[type="email"], input[type="text"]{
+    &:focus {
+      border-color: rgba(244, 63, 94, 0.9) !important;
+    }
+    color: rgba(244, 63, 94, 0.9) !important;
+  }
+}
