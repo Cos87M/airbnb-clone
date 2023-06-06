@@ -1,8 +1,8 @@
 #frozen_string_literal: true
 
-class UsersController < ApplicationController
+class UsersByEmailsController < ApplicationController
   def show
-    user = User.find(params[:id])
+    user = User.find_by!(email: params[:email])
 
     respond_to do | format |
       format.json do
@@ -17,6 +17,5 @@ class UsersController < ApplicationController
         render json: { error: e.message }.to_json, status: 404
       end
     end
-
   end
 end
