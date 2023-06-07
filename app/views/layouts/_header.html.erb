@@ -115,9 +115,14 @@
               id="menu-dropdown-items"
         >
           <div role="none" class="px-2 py-2 bg-white rounded-md shadow divide-y divide-gray-100">
-            <a href="#" data-header-target="userAuthLink" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" > Sign up</a>
-            <a href="#" data-header-target="userAuthLink" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >Log in</a>
-            <a href="#" data-header-target="userAuthLink" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >Log out</a>
+
+            <% if user_signed_in?  %>
+              <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": "delete" }, class: "block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" %>
+            <% else %>
+              <a href="#" data-header-target="userAuthLink" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" > Sign up</a>
+              <a href="#" data-header-target="userAuthLink" class="block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >Log in</a>
+            <% end %>
+
           </div>
 
         </div>
