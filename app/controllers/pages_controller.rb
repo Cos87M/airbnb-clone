@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
-  def index
+  def home
+    @properties = Property.all
   end
 end
