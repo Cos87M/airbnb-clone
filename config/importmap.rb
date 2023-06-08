@@ -9,3 +9,4 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 
 
 pin "el-transition", to: "https://ga.jspm.io/npm:el-transition@0.0.7/index.js"
+pin "geolib", to: "https://ga.jspm.io/npm:geolib@3.3.4/es/index.js"
