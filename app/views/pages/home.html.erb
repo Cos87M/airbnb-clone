@@ -6,7 +6,7 @@
         data-latitude="<%= current_user&.profile&.latitude %>"
         data-longitude="<%= current_user&.profile&.longitude %>"
   >
-    <ul class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-3 gap-1">
+    <ul class="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4 gap-1">
       <% @properties.each do |property| %>
         <div class="p-4">
           <a href="" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
