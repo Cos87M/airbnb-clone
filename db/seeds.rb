@@ -7,8 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 Property.destroy_all
 
-6.times do
-  Property.create!(
+6.times do |i|
+  property = Property.create!(
     name: Faker::Lorem.unique.word,
     headline: Faker::Lorem.unique.sentence,
     description: Faker::Lorem.paragraph,
@@ -17,5 +17,7 @@ Property.destroy_all
     country: "Germany",
     longitude: Faker::Address.longitude,
     latitude: Faker::Address.latitude,
+    price: Money.from_amount((25..100).to_a.sample)
   )
+  property.images.attach(io: File.open(Rails.root.join("db", "sample_images", "property_#{i + 1}.png")), filename: property.name)
 end
