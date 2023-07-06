@@ -8,6 +8,9 @@ class Property < ApplicationRecord
 
   has_many_attached :images, dependent: :destroy
 
+  # This association allows the Property model to have multiple reviews associated with it
+  has_many :reviews, as: :reviewable
+
   def address
     # [address_1, address_2, city, country].compact.join(', ')
     [ city, country].compact.join(', ')
@@ -16,4 +19,5 @@ class Property < ApplicationRecord
   def default_image
     images.first
   end
+
 end

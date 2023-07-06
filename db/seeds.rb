@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 Property.destroy_all
 
-6.times do |i|
+8.times do |i|
   property = Property.create!(
     name: Faker::Lorem.unique.word,
     headline: Faker::Lorem.unique.sentence,
@@ -20,4 +20,13 @@ Property.destroy_all
     price: Money.from_amount((25..100).to_a.sample)
   )
   property.images.attach(io: File.open(Rails.root.join("db", "sample_images", "property_#{i + 1}.png")), filename: property.name)
+
+  (1..5).to_a.sample.times do
+    Review.create(
+      reviewable: property,
+      rating: (1..5).to_a.sample,
+      title: Faker::Lorem.word,
+      body: Faker::Lorem.paragraph
+    )
+  end
 end
