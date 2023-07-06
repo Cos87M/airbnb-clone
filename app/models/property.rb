@@ -20,7 +20,4 @@ class Property < ApplicationRecord
     images.first
   end
 
-  def average_rating
-    reviews.average(:rating)
-  end
 end
