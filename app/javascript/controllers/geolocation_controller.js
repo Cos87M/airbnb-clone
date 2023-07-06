@@ -44,6 +44,7 @@ export default class extends Controller {
     this.element.dataset.latitude = coordonates.latitude;
     this.element.dataset.longitude = coordonates.longitude;
   }
+
   getUserCoordonates() {
     return {
       latitude: this.element.dataset.latitude,
