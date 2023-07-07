@@ -10,4 +10,6 @@ RSpec.describe Property, type: :model do
   it { is_expected.to monetize(:price).allow_nil }
 
   it { should have_many(:reviews) }
+  it { have_many(:favorites).dependent(:destroy) }
+  it { have_many(:favorited_users).through(:favorites).source(:user) }
 end

@@ -10,6 +10,9 @@ class Property < ApplicationRecord
 
   # This association allows the Property model to have multiple reviews associated with it
   has_many :reviews, as: :reviewable
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user
+
 
   def address
     # [address_1, address_2, city, country].compact.join(', ')
