@@ -74,6 +74,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    axios_rails (0.14.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -262,6 +263,7 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  axios_rails
   bootsnap
   debug
   devise

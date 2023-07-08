@@ -1,5 +1,7 @@
 class FavoritesController < ApplicationController
-  before_action :authenticate_user!
+
+  protect_from_forgery with: :null_session
+  # before_action :authenticate_user!
 
   def create
     favorite = Favorite.create!(favorite_params)
