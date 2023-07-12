@@ -57,10 +57,6 @@ export default class extends Controller {
       .catch(error => console.error('Error creating favorite:', error));
   }
 
-
-
-
-
   unfavoriteProperty() {
     const favoriteId = this.element.dataset.favoriteId;
     // console.log('unfavorite favoriteId:', favoriteId); // Log the favoriteId value
