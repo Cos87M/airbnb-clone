@@ -22,6 +22,7 @@ RSpec.describe "Favorites", type: :request do
       expect {
         post favorites_path, params: params, headers: headers
       }.to change(Favorite, :count).by(1)
+      # binding.pry
       expect(response.status).to eq 201
     end
   end
