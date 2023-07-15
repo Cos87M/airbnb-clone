@@ -6,12 +6,12 @@ export default class extends Controller {
 
   connect() {
     // console.log("work")
-    this.openUserMenuTarget.addEventListener('click', this.toggleDropdownMenu)
+    this.openUserMenuTarget.addEventListener('click', this.toggleDropdownMenu);
 
     this.userAuthLinkTargets.forEach((link)=> {
       link.addEventListener('click',(e) => {
         e.preventDefault();
-        document.getElementById('modal-trigger').click();
+        document.getElementById('user-auth-modal-trigger').click();
         this.closeDropdownMenu();
       });
     });

@@ -1,35 +1,48 @@
 import { Controller } from "@hotwired/stimulus"
-import { enter, leave, toggle } from "el-transition"
+import { enter, leave } from "el-transition"
 
-// Connects to data-controller="controller-modal"
 export default class extends Controller {
   static targets = ["closeButton"];
 
   connect() {
+    const triggerId = this.element.dataset.modalTriggerId;
 
-    document.getElementById('modal-wrapper').addEventListener('click', this.closeModal);
+    document.addEventListener('click', (event) => {
+      if (event.target.id === triggerId) {
+        this.showModal(triggerId);
+      } else {
+        this.closeModal(event, triggerId);
+      }
+    });
 
     this.closeButtonTarget.addEventListener('click', () => {
-      leave(document.getElementById('modal-wrapper'));
-      leave(document.getElementById('modal-backdrop'));
-      leave(document.getElementById('modal-panel'));
+      this.closeModal(null, triggerId);
     });
   }
 
-  closeModal(event) {
-    const modalPanelClicked =document.getElementById('modal-panel').contains(event.target);
+  closeModal(event, triggerId) {
+    const wrapperElement = document.getElementById(`modal-${triggerId}-wrapper`);
+    const backdropElement = document.getElementById(`modal-${triggerId}-backdrop`);
+    const panelElement = document.getElementById(`modal-${triggerId}-panel`);
 
-
-    if(!modalPanelClicked && event.target.id !== "modal-trigger") {
-      leave(document.getElementById('modal-wrapper'));
-      leave(document.getElementById('modal-backdrop'));
-      leave(document.getElementById('modal-panel'));
+    if (wrapperElement && backdropElement && panelElement) {
+      if (!event || event.target.id === triggerId) {
+        leave(wrapperElement);
+        leave(backdropElement);
+        leave(panelElement);
+      }
     }
   }
-  showModal() {
-    enter(document.getElementById('modal-wrapper'));
-    enter(document.getElementById('modal-backdrop'));
-    enter(document.getElementById('modal-panel'));
-  }
 
+  showModal(triggerId) {
+    const wrapperElement = document.getElementById(`modal-${triggerId}-wrapper`);
+    const backdropElement = document.getElementById(`modal-${triggerId}-backdrop`);
+    const panelElement = document.getElementById(`modal-${triggerId}-panel`);
+
+    if (wrapperElement && backdropElement && panelElement) {
+      enter(wrapperElement);
+      enter(backdropElement);
+      enter(panelElement);
+    }
+  }
 }
