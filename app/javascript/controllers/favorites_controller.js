@@ -52,7 +52,7 @@ export default class extends Controller {
         // console.log('Favorite ID:', favoriteId);
         this.element.dataset.favorited = 'true';
         this.element.dataset.favoriteId = favoriteId;
-        this.element.setAttribute('fill', '#ff385c');
+        this.element.setAttribute('fill', this.element.dataset.favoritedColor);
       })
       .catch(error => console.error('Error creating favorite:', error));
   }
@@ -73,7 +73,7 @@ export default class extends Controller {
           if (response.ok) {
             this.element.dataset.favorited = 'false';
             this.element.removeAttribute('data-favorite-id');
-            this.element.setAttribute('fill', 'none');
+            this.element.setAttribute('fill', this.element.dataset.unfavoritedColor);
           } else {
             console.error('Error deleting favorite:', response.statusText);
           }
