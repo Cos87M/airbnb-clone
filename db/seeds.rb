@@ -11,7 +11,7 @@ Property.destroy_all
   property = Property.create!(
     name: Faker::Lorem.unique.word,
     headline: Faker::Lorem.unique.sentence,
-    description: Faker::Lorem.paragraph,
+    description: Faker::Lorem.paragraphs(number: 10).join(" "),
     address_1: Faker::Address.street_address,
     city: Faker::Address.city,
     country: "Germany",
