@@ -1,5 +1,5 @@
-<div class="mt-4 lg:row-span-3 lg:mt-0">
-  <p class="block text-sm text-gray-900 font-medium dark:text-gray-400">Customer Reviews</p>
+<div class="mt-10 lg:row-span-3 lg:mt-8">
+  <p class="block text-md text-gray-900 font-medium dark:text-gray-400 mb-4">Customer Reviews</p>
   <div class="flex items-center mb-2">
 
     <!-- Active: "text-yellow-300" , Default: "text-gray-300" -->
@@ -20,7 +20,7 @@
   <p class="text-sm font-medium text-gray-500 dark:text-gray-400"><%= @property.reviews_count %> reviews</p>
   <% 5.downto(1) do |n| %>
     <div class="flex items-center mt-4">
-        <a class="text-sm font-medium text-blue-600 dark:text-blue-500 "><%= n %> star</a>
+        <a class="text-sm font-medium text-black-600 "><%= n %> star</a>
         <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
             <div class="h-5 bg-yellow-300 rounded"
                 style="width: calc(<%= @property.reviews.where(rating: n).size %> / <%= @property.reviews_count %> * 100%)">
