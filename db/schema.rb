@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_12_154900) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_102809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_154900) do
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["property_id", "user_id"], name: "index_favorites_on_property_id_and_user_id", unique: true
     t.index ["property_id"], name: "index_favorites_on_property_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
@@ -109,7 +110,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_154900) do
     t.string "reviewable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -120,6 +123,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_154900) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.binary "photo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -131,4 +137,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_12_154900) do
   add_foreign_key "profiles", "users"
   add_foreign_key "reservations", "properties"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "users"
 end
