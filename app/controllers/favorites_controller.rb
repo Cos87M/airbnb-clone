@@ -4,7 +4,7 @@ class FavoritesController < ApplicationController
 
 
   def create
-    favorite = Favorite.create!(favorite_params)
+    favorite = Favorite.find_or_create_by(favorite_params)
 
     respond_to do |format|
       format.json do
@@ -12,6 +12,7 @@ class FavoritesController < ApplicationController
       end
     end
   end
+
 
   def destroy
     favorite = Favorite.find(params[:id])
