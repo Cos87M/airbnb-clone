@@ -54,7 +54,9 @@ export default class extends Controller {
         this.element.dataset.favoriteId = favoriteId;
         this.element.setAttribute('fill', this.element.dataset.favoritedColor);
       })
-      .catch(error => console.error('Error creating favorite:', error));
+      // .catch(error => console.error('Error creating favorite:', error));
+      .catch(error => console.error('Error creating favorite:', error, error.response));
+
   }
 
   unfavoriteProperty() {

@@ -18,9 +18,12 @@ class Property < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :reserved_users, through: :reservations, source: :user
 
+  CLEANING_FEE = (5_000).freeze
+  CLEANING_FEE_MONEY = Money.new(CLEANING_FEE)
+  SERVICE_FEE_PERCENTAGE = (0.08).freeze
   def address
     # [address_1, address_2, city, country].compact.join(', ')
-    [ city, country].compact.join(', ')
+    [city, country].compact.join(', ')
   end
 
   def default_image
