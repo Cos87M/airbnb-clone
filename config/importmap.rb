@@ -13,3 +13,4 @@ pin "geolib", to: "https://ga.jspm.io/npm:geolib@3.3.4/es/index.js"
 
 # A modern JavaScript utility library delivering modularity, performance & extras.
 pin "lodash-es", to: "https://ga.jspm.io/npm:lodash-es@4.17.21/lodash.js"
+pin "sweetalert2", to: "https://ga.jspm.io/npm:sweetalert2@11.7.20/dist/sweetalert2.all.js"

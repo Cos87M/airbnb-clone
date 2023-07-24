@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import { isEmpty } from 'lodash-es';
+import Swal from 'sweetalert2';
 
 export default class extends Controller {
   static targets = ['checkIn', 'checkOut', 'updateNumberOfNights', 'nightTotal', 'serviceFee','total'];
@@ -114,5 +115,32 @@ export default class extends Controller {
     // Update the total target with the formatted total
     this.totalTarget.textContent = formattedTotal;
 
+  }
+  buildReservationParams() {
+    const params = {
+      checkindate: this.checkInTarget.value,
+      checkoutdate: this.checkOutTarget.value,
+      subtotal: this.updateNightTotal(),
+      cleaning_fee: this.element.dataset.cleaningFee,
+      service_fee: this.updateServiceFee(),
+      total: this.updateTotal(),
+    };
+    const searchParams = new URLSearchParams(params);
+    return searchParams.toString();
+  }
+
+  buildSubmitUrl(url) {
+    return `${url}?${this.buildReservationParams()}`;
+  }
+  submitReservationComponent(e) {
+    if (isEmpty(this.checkInTarget.value) || isEmpty(this.checkOutTarget.value)) {
+      Swal.fire({
+        text: 'Please fill the check-in and checkout dates',
+        icon: "error"
+    });
+      return;
+    }
+    const newReservationUrl = e.target.dataset.submitUrl;
+    Turbo.visit(newReservationUrl);
   }
 }
