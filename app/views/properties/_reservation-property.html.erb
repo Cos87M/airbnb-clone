@@ -30,9 +30,9 @@
         </div>
         <dl class= "space-y-6">
           <div class="flex items-center justify-between">
-            <dt class="text-sm"><%= humanized_money_with_symbol(@property.price) %> x <span data-reservations-target="updateNumberOfNights"> nights </span></dt>
+            <dt class="text-sm"><%= humanized_money_with_symbol(@property.price) %> x <span data-reservations-target="updateNumberOfNights"> night </span></dt>
 
-            <dd class="text-sm font-medium text-gray-900">€<span data-reservations-target="nightTotal"></span> </dd>
+            <dd class="text-sm font-medium text-gray-900">€<span data-reservations-target="nightTotal">0.00</span> </dd>
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Cleaning fee</dt>
@@ -40,15 +40,17 @@
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Service fee</dt>
-            <dd class="text -sm font-medium text-gray-900">€<span data-reservations-target="serviceFee"></span></dd>
+            <dd class="text -sm font-medium text-gray-900">€<span data-reservations-target="serviceFee">0.00</span></dd>
           </div>
           <div class="flex items-center justify-between border-t border-gray-200 pt-2">
             <dt class="text-base font-medium">Total</dt>
-            <dd class="text-base font -medium text-gray-900">€<span data-reservations-target="total"></span></dd>
+            <dd class="text-base font -medium text-gray-900">€<span data-reservations-target="total">0.00</span></dd>
           </div>
         </dl>
         <div class="pt-6">
-          <button type="submit" class="w-full bg-indigo-400 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-sm mb-2">Book</button>
+          <button data-submit-url="<%= new_property_reservation_path(property_id: @property.id) %>"
+                  data-action="reservations#submitReservationComponent"
+                  type="submit" class="w-full bg-indigo-400 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-sm mb-2">Make a reservation</button>
         </div>
     </div>
   </div>
