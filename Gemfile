@@ -60,6 +60,8 @@ group :development, :test do
   # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners to test common Rails functionality that, if written by hand, would be much longer, more complex, and error-prone.
   gem 'shoulda-matchers', '~> 5.0'
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+
+  gem 'dotenv-rails', groups: [:development, :test]
 end
 
 group :development do
@@ -79,3 +81,5 @@ gem "geocoder"
 gem "money-rails", "~> 1.12"
 
 gem 'jsonapi-serializer'
+
+gem "stripe-rails"
