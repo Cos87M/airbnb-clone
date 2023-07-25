@@ -26,6 +26,10 @@
 
   <%= favicon_link_tag asset_path("airbnb-favicon.png") %>
 
+  <% if controller_name == "property_reservations" && action_name == "new" %>
+    <%= stripe_javascript_tag %>
+  <% end %>
+
 </head>
 
 <body>
