@@ -48,9 +48,12 @@
           </div>
         </dl>
         <div class="pt-6">
-          <button data-submit-url="<%= new_property_reservation_path(property_id: @property.id) %>"
-                  data-action="reservations#submitReservationComponent"
-                  type="submit" class="w-full bg-indigo-400 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-sm mb-2">Make a reservation</button>
+          <button data-action="reservations#submitReservationComponent"
+                  type="submit"
+                  class="w-full bg-indigo-400 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-sm mb-2"
+                  data-submit-url="<%= new_property_reservation_path(@property) %>">
+                  Make a reservation
+          </button>
         </div>
     </div>
   </div>

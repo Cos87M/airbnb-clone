@@ -61,6 +61,7 @@ export default class extends Controller {
 
     this.updateServiceFee(nightTotal); // Update the service fee based on the nightTotal
     this.updateTotal();
+    return nightTotal; // Return the calculated value
   }
 
   numberOfNights() {
@@ -90,6 +91,7 @@ export default class extends Controller {
     const serviceFee = nightTotal * serviceFeePercentage;
     this.serviceFeeTarget.textContent = serviceFee.toFixed(2);
     this.updateTotal();
+    return serviceFee;
   }
   updateTotal() {
     const nightTotal = parseFloat(this.nightTotalTarget.textContent);
@@ -114,9 +116,13 @@ export default class extends Controller {
 
     // Update the total target with the formatted total
     this.totalTarget.textContent = formattedTotal;
+    return formattedTotal;
 
   }
   buildReservationParams() {
+    // const differenceInDays = this.numberOfNights();
+    // console.log('differenceInDays in buildReservationParams:', differenceInDays);
+
     const params = {
       checkindate: this.checkInTarget.value,
       checkoutdate: this.checkOutTarget.value,
@@ -124,23 +130,29 @@ export default class extends Controller {
       cleaning_fee: this.element.dataset.cleaningFee,
       service_fee: this.updateServiceFee(),
       total: this.updateTotal(),
+      differenceInDays: this.numberOfNights(),
     };
     const searchParams = new URLSearchParams(params);
     return searchParams.toString();
   }
 
   buildSubmitUrl(url) {
-    return `${url}?${this.buildReservationParams()}`;
+    const params = this.buildReservationParams(); // Get the generated parameters
+    return `${url}?${params}`;
   }
+
   submitReservationComponent(e) {
     if (isEmpty(this.checkInTarget.value) || isEmpty(this.checkOutTarget.value)) {
       Swal.fire({
         text: 'Please fill the check-in and checkout dates',
         icon: "error"
-    });
+      });
       return;
     }
-    const newReservationUrl = e.target.dataset.submitUrl;
+    const params = this.buildReservationParams(); // Get the generated parameters
+    const newReservationUrl = this.buildSubmitUrl(e.target.dataset.submitUrl); // Use buildSubmitUrl to get the URL with parameters
+    // console.log(params);
+
     Turbo.visit(newReservationUrl);
   }
 }
