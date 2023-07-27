@@ -1,4 +1,5 @@
-<div class="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+<div  data-controller="stripe-elements"
+      class="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
   <a href="#" class="text-2xl font-bold text-gray-800"><%= @property.name %></a>
 
 </div>
@@ -38,20 +39,20 @@
     </div>
 
   </div>
-  <div class="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
-    <p class="text-xl font-medium">Payment Details</p>
-    <p class="text-gray-400">Complete your reservation by providing your payment details</p>
+  <div class="mt-8 mb-10 px-4 pt-8 lg:mt-0">
+    <p class="mb-4 text-xl font-medium">Payment Details</p>
+      <p class="mb-4 mt-8 text-gray-400">Complete your reservation by providing your payment details</p>
     <div >
-      <label for="email_confirm" class="mt-4 mb-2 block text-sm font-medium">Email</label>
+      <%# <label for="email_confirm" class="mt-4 mb-2 block text-sm font-medium">Email</label>
       <div class="relative">
         <input type="text" id="email_confirm" name="email_confirm" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com"/>
-      </div>
+      </div> %>
 
         <!--Card details -->
 
-      <%= stripe_elements_tag submit_path: "property_path(@property)" %>
+      <%= stripe_elements_tag submit_path: "/", css_path: stylesheet_path("stripe_elements") %>
 
-      <label for="billing-address" class="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
+      <%# <label for="billing-address" class="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
       <div class="flex flex-col sm:flex-row">
         <div class="relative flex-shrink-0 sm:w-7/12">
           <input type="text" id="billing-address" name="billing-address" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street Address" />
@@ -66,7 +67,7 @@
 
         </select>
         <input type="text" id="billing-zip" name="billing-zip" class="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
-      </div>
+      </div> %>
 
       <!-- Total -->
       <div class="mt-6 flex items-center justify-between">
@@ -74,6 +75,6 @@
         <p class="text-2xl font-semibold text-gray-900">€<%= @total %></p>
       </div>
     </div>
-    <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
+    <%# <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button> %>
   </div>
 </div>
