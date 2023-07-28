@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_102809) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_28_104648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,18 +86,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_102809) do
     t.string "zip_code"
     t.integer "price_cents"
     t.string "price_currency"
-    t.integer "reviews_count"
-    t.decimal "average_rating"
+    t.integer "reviews_count", default: 0, null: false
+    t.decimal "average_rating", default: "0.0", null: false
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
   end
 
   create_table "reservations", force: :cascade do |t|
     t.bigint "property_id", null: false
     t.bigint "user_id", null: false
-    t.date "reservation_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["property_id", "user_id", "reservation_date"], name: "idx_reserv_on_property_id_and_user_id_and_reserv_date", unique: true
+    t.date "checkin_date"
+    t.date "checkout_date"
     t.index ["property_id"], name: "index_reservations_on_property_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
