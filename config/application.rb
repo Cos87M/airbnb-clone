@@ -34,6 +34,9 @@ module AirbnbClone
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # 20 Preventing sassc-rails from setting sass as the compressor
+    config.assets.css_compressor = nil
+
     # Stripe key
     config.stripe.secret_key = ENV["STRIPE_SECRET_KEY"]
     config.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
