@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     resources :reservations, only: :new, controller: "property_reservations"
   end
 
+  resources :reservation_payments, only: :create
+
 end

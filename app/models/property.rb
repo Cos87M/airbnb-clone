@@ -18,6 +18,8 @@ class Property < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :reserved_users, through: :reservations, source: :user
 
+  has_many :payments, through: :reservations
+
   CLEANING_FEE = 2_500.freeze
   CLEANING_FEE_MONEY = Money.new(CLEANING_FEE)
   SERVICE_FEE_PERCENTAGE = (0.1).freeze
@@ -35,12 +37,13 @@ class Property < ApplicationRecord
     favorited_users.include?(user)
   end
 
-  # def available_dates
-  #   next_reservation = reservations.future_reservations.first
-  #   date_format = "%b %e"
-  #   return Date.tomorrow.strftime(date_format)..Date.today.end_of_year.strftime(date_format) if next_reservation === nil
+  def available_dates
+    date_format = "%b %e"
+    next_reservation = reservations.future_reservations.order(checkout_date: :desc).first
 
-  #   Date.tomorrow.strftime(date_format)..next_reservation.reservation_date.strftime(date_format)
-  # end
+    return Date.tomorrow.strftime(date_format)..Date.today.end_of_year.strftime(date_format) if next_reservation === nil
+
+    next_reservation.checkout_date.strftime(date_format)..Date.today.end_of_year.strftime(date_format)
+  end
 
 end
