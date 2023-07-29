@@ -1,5 +1,7 @@
 class ReservationPaymentsController < ApplicationController
   def create
+    # binding.pry
+
     stripe_card = Stripe::Customer.create_source(
       stripe_customer.id,
       { source: payment_params[:stripeToken] }
