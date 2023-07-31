@@ -18,7 +18,7 @@ export default class extends Controller {
         this.invalidSvgTarget.classList.remove('hidden');
         this.errorMessageTarget.classList.remove('hidden');
       } else {
-        // email field is filled, so do something
+        // Email field is filled, check if the user exists
         axios.get('/users_by_email', {
           params: {
             email: this.emailTarget.value
