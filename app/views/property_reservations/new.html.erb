@@ -7,7 +7,6 @@
 <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
   <div class="px-4 pt-8">
     <p class="text-xl font-medium">Your Reservation</p>
-    <%# <p class="text-gray-400">Check your items. And select a suitable shipping method.</p> %>
     <div class="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
 
         <dl class= "space-y-10">
@@ -43,13 +42,7 @@
     <p class="mb-4 text-xl font-medium">Payment Details</p>
       <p class="mb-4 mt-8 text-gray-400">Complete your reservation by providing your payment details</p>
     <div >
-      <%# <label for="email_confirm" class="mt-4 mb-2 block text-sm font-medium">Email</label>
-      <div class="relative">
-        <input type="text" id="email_confirm" name="email_confirm" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com"/>
-      </div> %>
-
         <!--Card details -->
-
       <%=
           stripe_elements_tag(
             submit_path: reservation_payments_path(
@@ -64,13 +57,11 @@
             )
           )
       %>
-
       <!-- Total -->
       <div class="mt-6 flex items-center justify-between">
         <p class="text-sm font-medium text-gray-900">Total</p>
         <p class="text-2xl font-semibold text-gray-900">€<%= @total %></p>
       </div>
     </div>
-    <%# <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button> %>
   </div>
 </div>
