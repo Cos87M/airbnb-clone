@@ -1,10 +1,9 @@
 FactoryBot.define do
   factory :profile do
     user { nil }
-    address_1 { "MyString" }
-    address_2 { "MyString" }
-    city { "MyString" }
-    country { "MyString" }
+    city { Faker::Address.city}
+    country_code { Faker::Address.country_code}
+    address_1 { Faker::Address.street_address}
     latitude { 1.5 }
     longitude { 1.5 }
   end

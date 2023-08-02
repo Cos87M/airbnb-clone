@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_28_161209) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_01_211627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,12 +78,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_161209) do
     t.string "address_1"
     t.string "address_2"
     t.string "city"
-    t.string "country"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "zip_code"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "country_code"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -92,7 +94,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_161209) do
     t.string "headline"
     t.text "description"
     t.string "city"
-    t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address_1"
@@ -104,6 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_161209) do
     t.string "price_currency"
     t.integer "reviews_count", default: 0, null: false
     t.decimal "average_rating", default: "0.0", null: false
+    t.string "country_code"
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
   end
 
@@ -139,8 +141,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_161209) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
     t.binary "photo"
     t.string "stripe_id"
     t.index ["email"], name: "index_users_on_email", unique: true

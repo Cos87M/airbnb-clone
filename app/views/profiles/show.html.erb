@@ -1,5 +1,7 @@
 <body class="bg-gray-300">
-  <div class="container mx-auto mt-20 bg-gray-100">
+
+  <%# <p>Country Name: <%= @profile.country_name %>
+  <div class="container z-50 mx-auto mt-20 bg-gray-100" style="width: 60%;">
     <div class="max-w-7xl pb-10 lg:py-12 lg:px-8" >
 
       <div class="flex justify-center mt-8">
@@ -19,71 +21,75 @@
               <div class="card-body">
                 <!-- Your Profile Section -->
                 <div class="content" id="profile">
-                  <h4>Your Profile</h4>
+                  <h4>Update Profile</h4>
                   <hr class="my-4">
-                  <form>
+                  <%= form_with model: @profile, local: true, url: profile_path(@profile) do |f| %>
+
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
 
-                      <div class="lg:col-span-2">
+                      <div class="lg:col-span-2 md:col-span-1">
                         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                          <div class="md:col-span-5">
-                            <label for="full_name">Full Name</label>
-                            <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-                          </div>
 
-                          <div class="md:col-span-5">
-                            <label for="email">Email Address</label>
-                            <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
-                          </div>
+                          <div class="flex mb-4 md:col-span-5">
+                            <div class="w-1/2 mr-2 ">
+                              <%= f.label :first_name, class: "block text-sm font-medium text-gray-700" %>
+                              <%= f.text_field :first_name, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                            </div>
 
-                          <div class="md:col-span-3">
-                            <label for="address">Address / Street</label>
-                            <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
-                          </div>
-
-                          <div class="md:col-span-2">
-                            <label for="city">City</label>
-                            <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
-                          </div>
-
-                          <div class="md:col-span-3">
-                            <label for="country">Country</label>
-                            <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                              <input name="country" id="country" placeholder="Country" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                              <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                                <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                              </button>
-                              <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                                <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                              </button>
+                            <div class="w-1/2 ml-2">
+                              <%= f.label :last_name, class: "block text-sm font-medium text-gray-700" %>
+                              <%= f.text_field :last_name, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
                             </div>
                           </div>
 
-                          <div class="md:col-span-2">
-                            <label for="zipcode">Zipcode</label>
-                            <input type="text" name="zipcode" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" value="" />
+                          <div class="md:col-span-5">
+                            <%= f.label :address_1, class: "block text-sm font-medium text-gray-700" %>
+                            <%= f.text_field :address_1, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
                           </div>
+
+                          <div class="md:col-span-5">
+                            <%= f.label :address_2, class: "block text-sm font-medium text-gray-700" %>
+                            <%= f.text_field :address_2, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                          </div>
+
+                          <div class="md:col-span-5">
+                            <%= f.label :city, class: "block text-sm font-medium text-gray-700" %>
+                            <%= f.text_field :city, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                          </div>
+
+                          <div class="flex mb-4 md:col-span-5">
+                            <div class="w-1/2 mr-2">
+                              <%= f.label :country_code, class: "block text-sm font-medium text-gray-700" %>
+                              <div class="relative">
+                                <%= f.select :country_code, ISO3166::Country.all.map { |country| [country.translations[I18n.locale.to_s], country.alpha2] }, {}, class: "h-10 border border-gray-300 rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+                            </div>
+                            <div class="md:col-span-1 w-1/2 ml-2">
+                              <%= f.label :zip_code, class: "block text-sm font-medium text-gray-700" %>
+                              <%= f.text_field :zip_code, class: "h-10 border border-gray-300 mt-1 block rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                            </div>
+                          </div>
+
 
                           <div class="md:col-span-5 text-right">
                             <div class="inline-flex items-end">
-                              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                              <button class="bg-gray-400 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Submit</button>
                             </div>
                           </div>
 
                         </div>
                       </div>
                     </div>
-                  </form>
+
+                  <% end %>
+
                 </div>
 
                 <!-- Other Content Sections -->
                 <div class="content hidden" id="account">
                   <!-- Account content -->
 
-                  <form action="#" method="POST">
+                  <%# <form action="#" method="POST">
                     <div class="flex mb-4">
                       <div class="w-1/2 mr-2">
                         <label for="plan-billing-firstname" class="block font-semibold">First Name</label>
@@ -110,12 +116,12 @@
                         class="btn btn-primary block px-4 py-2 mt-2 bg-transparent rounded-lg text-sm font-semibold md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Update My
                         Profile</button>
                     </div>
-                  </form>
+                  </form> %>
 
                 </div>
                 <div class="content hidden" id="password">
                   <!-- Password content -->
-                  <form>
+                  <%# <form>
                     <div class="mb-4">
                       <label for="password_change" class="block">Old Password</label>
                       <input type="password_change" id="password_change" placeholder="Password" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
@@ -130,13 +136,14 @@
                         Save changes
                     </button>
                     </div>
-                  </form>
+                  </form> %>
                 </div>
 
                 <div class="content hidden" id="plan-billing">
                   <!-- Plan & Billing content -->
                   <h4>Payment details</h4>
                   <hr class="my-4">
+
 
                 </div>
               </div>
