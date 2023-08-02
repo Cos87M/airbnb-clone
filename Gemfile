@@ -83,3 +83,4 @@ gem "money-rails", "~> 1.12"
 gem 'jsonapi-serializer'
 
 gem "stripe-rails"
+gem 'countries', '~> 5.0'

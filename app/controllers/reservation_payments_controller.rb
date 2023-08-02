@@ -19,7 +19,7 @@ class ReservationPaymentsController < ApplicationController
       checkin_date: Date.strptime(payment_params[:checkin_date], "%m/%d/%Y"),
       checkout_date: Date.strptime(payment_params[:checkout_date], "%m/%d/%Y")
     )
-    payment =Payment.create(
+    payment = Payment.create(
       reservation: reservation,
       subtotal: Money.from_amount(BigDecimal(payment_params[:subtotal])),
       cleaning_fee: Money.from_amount(BigDecimal(payment_params[:cleaning_fee])),
@@ -67,5 +67,4 @@ class ReservationPaymentsController < ApplicationController
                            Stripe::Customer.retrieve(user.stripe_id)
                          end
   end
-
 end

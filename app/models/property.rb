@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Property < ApplicationRecord
-  validates :name, :headline, :description, :city, :country, :address_1, presence: true
+  validates :name, :headline, :description, :city, :country_code, :address_1, presence: true
 
   monetize :price_cents, allow_nil: true
 
@@ -24,8 +24,8 @@ class Property < ApplicationRecord
   CLEANING_FEE_MONEY = Money.new(CLEANING_FEE)
   SERVICE_FEE_PERCENTAGE = (0.1).freeze
   def address
-    # [address_1, address_2, city, country].compact.join(', ')
-    [city, country].compact.join(', ')
+    # [address_1, address_2, city, country_name].compact.join(', ')
+    [city, country_name].compact.join(', ')
   end
 
   def default_image
@@ -46,4 +46,12 @@ class Property < ApplicationRecord
     next_reservation.checkout_date.strftime(date_format)..Date.today.end_of_year.strftime(date_format)
   end
 
+  def country_name
+    country = ISO3166::Country[country_code]
+    if country.nil?
+      "Unknown Country" # Or any default value you prefer
+    else
+      country.translations[I18n.locale.to_s] || country.name
+    end
+  end
 end

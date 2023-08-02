@@ -15,11 +15,9 @@ user_pictures = []
 #   user_pictures << URI.parse(Faker::LoremFlickr.unique.image(size: "50x60")).open
 # end
 
-me = User.create!(email: 'peteco@gmail.com',
-                 password: '123456',
-                 first_name: 'Pet',
-                 last_name: 'Eco')
+me = User.create!(email: 'peteco@gmail.com', password: '123456')
 
+me.profile.update(first_name: 'Pet', last_name: 'Eco', country_code: "DE")
 image_path = Rails.root.join('db', 'sample_images', "user_6.jpg")
 me.picture.attach(io: File.open(image_path), filename: "#{me.full_name}.jpg")
 # me.picture.attach(io: user_pictures[0], filename: "#{me.full_name.jpg}")
@@ -31,18 +29,15 @@ me.picture.attach(io: File.open(image_path), filename: "#{me.full_name}.jpg")
 
 # Create users using Faker data
 5.times do |i|
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  email = Faker::Internet.email(name: "#{first_name} #{last_name}", separators: '.')
+
+  email = Faker::Internet.email
   password = '123456' # Set a default password for all users
 
   user = User.create!(
-    first_name: first_name,
-    last_name: last_name,
     email: email,
     password: password
   )
-
+  user.profile.update(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
   # Attach a profile picture to each user
   image_path = Rails.root.join('db', 'sample_images', "user_#{i + 1}.jpg")
   user.picture.attach(io: File.open(image_path), filename: "#{user.full_name}.jpg")
@@ -55,7 +50,7 @@ end
     description: Faker::Lorem.paragraphs(number: 10).join(' '),
     address_1: Faker::Address.street_address,
     city: Faker::Address.city,
-    country: "Germany",
+    country_code: "DE",
     longitude: Faker::Address.longitude,
     latitude: Faker::Address.latitude,
     price: Money.from_amount((25..100).to_a.sample)
