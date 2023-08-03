@@ -4,25 +4,23 @@ RSpec.describe "Profiles", type: :request do
 
   before { sign_in user }
 
+  describe "GET /show" do
+    it "succeeds" do
+      get profile_path(profile)
+      expect(response).to be_successful
+    end
+  end
+
   describe "PUT update" do
     it "succeeds" do
-      # Set initial state for profile
-      profile.update!(first_name: nil, last_name: nil)
+      profile.update! first_name: "Foo", last_name: "Bar"
 
-      # puts "Before update: #{profile.first_name} #{profile.last_name}"
-
-      expect {
-        put profile_path(profile), params: {
-          profile: {
-            first_name: "Pet",
-            last_name: "Smith"
-          }
+      put profile_path(profile),params: {
+        profile: {
+          first_name: "Peteco"
         }
-      }.to change { profile.reload.first_name }.from(nil).to("Pet")
-       .and change { profile.reload.last_name }.from(nil).to("Smith")
-
-      puts "After update: #{profile.reload.first_name} #{profile.reload.last_name}"
-
+      }
+      expect(profile.reload.first_name).to eq("Peteco")
       expect(response).to be_redirect
     end
   end
