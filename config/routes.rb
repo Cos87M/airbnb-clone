@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [:show, :update]
 
+  resources :accounts, only: [:show, :update]
+
 end
