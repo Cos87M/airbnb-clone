@@ -2,12 +2,14 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @profile = current_user.profile
+    @profile = Profile.find(params[:id])
     @user = current_user
+    authorize @profile
   end
 
   def update
     @profile = current_user.profile
+    authorize @profile
     if @profile.update(profile_params)
       updated_fields = extract_updated_fields(profile_params)
       flash[:notice] = "Your profile was updated: #{format_updated_fields(updated_fields)}"

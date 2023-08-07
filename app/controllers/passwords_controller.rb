@@ -2,11 +2,13 @@ class PasswordsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    authorize @user, policy_class: PasswordPolicy
   end
 
   def update
     @user = User.find(params[:id])
+    authorize @user, policy_class: PasswordPolicy
     if @user.update(password_params)
       flash[:notice] = "Your password was updated: '#{password_params[:password]}'"
     end

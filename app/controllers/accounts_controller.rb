@@ -2,11 +2,13 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    authorize @user, policy_class: AccountPolicy
   end
 
   def update
     @user = User.find(params[:id])
+    authorize @user, policy_class: AccountPolicy
     if @user.update(account_params)
       flash[:notice] = "Your email was updated: #{params[:account][:email]}"
     end
