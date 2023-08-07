@@ -1,8 +1,8 @@
-<% @property.reviews.includes(:user).each do |review| %>
+<% @property.reviews.includes(user: :profile).each do |review| %>
   <article class="container mx-auto px-4 py-2  sm:px-6 lg:max-w-7xl lg:px-8  max-w-2xl rounded-md" >
       <div class="flex items-center mb-4 space-x-4">
-          <% if review.user.picture.attached? %>
-            <%= image_tag review.user.picture, class: "w-10 h-10 rounded-full", alt: review.user.full_name %>
+          <% if review.user.profile.picture.attached? %>
+            <%= image_tag review.user.profile.picture, class: "w-10 h-10 rounded-full", alt: review.user.full_name %>
           <% end %>
           <div class="space-y-1 font-medium dark:text-white">
               <p><%= review.user.full_name %> </p>
