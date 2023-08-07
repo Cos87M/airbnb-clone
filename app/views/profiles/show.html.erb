@@ -38,6 +38,13 @@
                 <!-- Password content -->
                 <div class="content hidden" id="password" data-sidebar-target="content">
 
+                  <%= render template: "passwords/show", locals: { user: @user } %>
+                  <% if flash[:notice] %>
+                    <div class="mt-4 alert alert-success">
+                      <%= flash[:notice] %>
+                    </div>
+                  <% end %>
+
                 </div>
 
                 <div class="content hidden" id="plan-billing" data-sidebar-target="content">
