@@ -49,10 +49,8 @@
 
                 <div class="content hidden" id="plan-billing" data-sidebar-target="content">
                   <!-- Plan & Billing content -->
-                  <h4>Payment details</h4>
-                  <hr class="my-4">
 
-
+                  <%= render template: "payments_sidebar/index", locals: { profile: @profile } %>
                 </div>
               </div>
             </div>

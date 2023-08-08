@@ -18,7 +18,6 @@ class ProfilesController < ApplicationController
     redirect_to profile_path(current_user.profile) # Use current_user.profile here
   end
 
-
   private
 
   def profile_params
