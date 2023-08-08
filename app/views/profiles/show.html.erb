@@ -1,8 +1,8 @@
 <body class="bg-gray-300">
 
   <%# <p>Country Name: <%= @profile.country_name %>
-  <div data-controller="sidebar" class="container z-50 mx-auto mt-20 bg-gray-100" style="width: 60%;">
-    <div class="max-w-7xl pb-10 lg:py-12 lg:px-8" >
+  <div data-controller="sidebar" <div class="container z-50 mx-auto mt-20 bg-gray-100" style="width: 80%;">
+    <div class="max-w-7xl pb-10 lg:py-12 lg:px-8 xl:max-w-full">
 
       <div class="flex justify-center mt-8">
           <!-- Sidebar -->
@@ -49,9 +49,8 @@
 
                 <div class="content hidden" id="plan-billing" data-sidebar-target="content">
                   <!-- Plan & Billing content -->
-                  <h4>Payment details</h4>
-                  <hr class="my-4">
 
+                  <%= render template: "payments_sidebar/index", locals: { payments: @payments } %>
 
                 </div>
               </div>

@@ -73,17 +73,12 @@
         </div>
       </div>
 
-
-
       <!-- Profile dropdown -->
       <div>
         <div class="pl-2">
           <button data-header-target="openUserMenu" type="button" class="flex flex-row items-center w-full px-1 py-1 mt-2 text-sm font-semibold text-left bg-transparent rounded-full md:w-auto md:mt-0 md:ml-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-
-            <%= image_tag current_user&.profile&.picture  || "default_profile_picture.svg",
-              class: "h-10 w-10 rounded-full"
-               %>
-
+            <%= image_tag current_user&.profile&.picture.present? ? current_user&.profile&.picture : "default_profile_picture.svg",
+              class: "h-10 w-10 rounded-full" %>
           </button>
         </div>
 

@@ -24,4 +24,6 @@ Rails.application.routes.draw do
 
   resources :passwords, only: [:show, :update]
 
+  resources :payments_sidebar, only: [:index]
+
 end

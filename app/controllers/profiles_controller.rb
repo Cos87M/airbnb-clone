@@ -4,6 +4,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     @user = current_user
+    @payments = current_user.payments
     authorize @profile
   end
 
@@ -17,7 +18,6 @@ class ProfilesController < ApplicationController
     session[:active_link_id] = "profile" # Store the updated link ID in the session
     redirect_to profile_path(current_user.profile) # Use current_user.profile here
   end
-
 
   private
 
