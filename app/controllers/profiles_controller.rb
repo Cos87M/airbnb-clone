@@ -4,6 +4,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     @user = current_user
+    @payments = current_user.payments
     authorize @profile
   end
 
