@@ -26,4 +26,6 @@ Rails.application.routes.draw do
 
   resources :payments_sidebar, only: [:index]
 
+  put "/hostify/:user_id" => "hostify#update", as: :hostify
+
 end
