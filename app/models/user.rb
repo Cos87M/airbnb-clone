@@ -16,8 +16,11 @@ class User < ApplicationRecord
   has_many :reserved_properties, through: :reservations, source: :property
   has_many :reviews, dependent: :destroy
 
-  after_create :create_profile
+  ROLES = %w[host]
 
+  validates :role, inclusion: { in: ROLES }, allow_nil: true
+
+  after_create :create_profile
   def create_profile
     self.profile = Profile.new
     save!
@@ -25,4 +28,16 @@ class User < ApplicationRecord
 
   delegate :full_name, to: :profile
 
+  def host?
+    role == "host"
+  end
+
+  def hostify!
+    puts "hostify! method called"
+    update!(role: "host")
+  end
+
+  def customer?
+    role.blank?
+  end
 end
