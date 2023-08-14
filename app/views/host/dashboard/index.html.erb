@@ -1,17 +1,121 @@
 <body class="bg-gray-300">
 
   <div class="container z-50 mx-auto mt-20 bg-gray-100" style="width: 80%;">
-    <div class="max-w-7xl pb-8 lg:py-10 lg:px-4 xl:max-w-full">
-
-      <div class="flex justify-center mt-8">
+    <div class="max-w-7xl pb-8 lg:py-8 lg:px-4 xl:max-w-full">
+      <div class="flex justify-center mt-6">
           <!-- Sidebar -->
           <%= render "host/dashboard/sidebar" %>
           <!-- Main Content -->
-          <div class="w-2/3 p-4" id="main-content">
+          <div class="w-2/3 p-4">
             <div class="card">
               <div class="card-body">
                 <!-- Your sidebar Sections -->
+                <div class="bg-gray-100 px-4 py-2  border-gray-400 divide-y divide-gray-200 dark:divide-gray-700">
+                  <div class="mb-4 flex items-center justify-between flex-wrap sm:flex-nowrap">
+                    <div class="ml-4 mt-2">
+                      <h3 class="text-lg leading-6 font-medium text-gray-900">Listed Properties</h3>
+                    </div>
+                    <div class="flex-shrink-0">
+                      <%= link_to "Create new property", new_host_property_path, class:"relative inline-flex items-center px-4 py-2 border border-gray-250 text-sm font-medium text-black bg-gray-300 hover:bg-gray-500 focus:ring-offset-2 focus:ring-gray-500 shadow-sm" %>
+                    </div>
+                  </div>
+                  <div class="bg-white  shadow overflow-hidden">
 
+                    <ul role="list" class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+                      <li class="pb-3 sm:pb-4">
+                          <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                  Neil Sims
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                  email@flowbite.com
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                $320
+                            </div>
+                          </div>
+                      </li>
+                      <li class="py-3 sm:py-4">
+                          <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Neil image">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                  Bonnie Green
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                  email@flowbite.com
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                $3467
+                            </div>
+                          </div>
+                      </li>
+                      <li class="py-3 sm:py-4">
+                          <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-2.jpg" alt="Neil image">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                  Michael Gough
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                  email@flowbite.com
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                $67
+                            </div>
+                          </div>
+                      </li>
+                      <li class="py-3 sm:py-4">
+                          <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="Neil image">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                  Thomas Lean
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                  email@flowbite.com
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                $2367
+                            </div>
+                          </div>
+                      </li>
+                      <li class="pt-3 pb-0 sm:pt-4">
+                          <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Neil image">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                  Lana Byrd
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                  email@flowbite.com
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                $367
+                            </div>
+                          </div>
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>
