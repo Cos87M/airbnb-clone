@@ -2,6 +2,9 @@ class HostPolicy < ApplicationPolicy
   def index?
     user.host?
   end
+  def new?
+    user.host?
+  end
   def show?
     user.host?
   end
