@@ -8,6 +8,7 @@ class Property < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: -> { latitude.blank? && longitude.blank? }
 
+  belongs_to :user
   has_many_attached :images, dependent: :destroy
 
   # This association allows the Property model to have multiple reviews associated with it
@@ -23,6 +24,7 @@ class Property < ApplicationRecord
   CLEANING_FEE = 2_500.freeze
   CLEANING_FEE_MONEY = Money.new(CLEANING_FEE)
   SERVICE_FEE_PERCENTAGE = (0.1).freeze
+
   def address
     # [address_1, address_2, city, country_name].compact.join(', ')
     [city, country_name].compact.join(', ')

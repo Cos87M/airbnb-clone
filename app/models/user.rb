@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   has_many :reserved_properties, through: :reservations, source: :property
   has_many :reviews, dependent: :destroy
+  has_many :properties, dependent: :destroy
 
   ROLES = %w[host]
 

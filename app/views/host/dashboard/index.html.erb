@@ -6,14 +6,14 @@
           <!-- Sidebar -->
           <%= render "host/dashboard/sidebar" %>
           <!-- Main Content -->
-          <div class="w-2/3 p-4">
+          <div class="w-2/3 p-2">
             <div class="card">
               <div class="card-body">
                 <!-- Your sidebar Sections -->
-                <div class="bg-gray-100 px-4 py-2  border-gray-400 divide-y divide-gray-200 dark:divide-gray-700">
+                <div class="bg-gray-100 px-4  border-gray-400 divide-y divide-gray-200 dark:divide-gray-700">
                   <div class="mb-4 flex items-center justify-between flex-wrap sm:flex-nowrap">
                     <div class="ml-4 mt-2">
-                      <h3 class="text-lg leading-6 font-medium text-gray-900">Listed Properties</h3>
+                      <h3 class="text-lg leading-6 font-medium text-gray-900">Add new properties</h3>
                     </div>
                     <div class="flex-shrink-0">
                       <%= link_to "Create new property", new_host_property_path, class:"relative inline-flex items-center px-4 py-2 border border-gray-250 text-sm font-medium text-black bg-gray-300 hover:bg-gray-500 focus:ring-offset-2 focus:ring-gray-500 shadow-sm" %>
@@ -21,97 +21,46 @@
                   </div>
                   <div class="bg-white  shadow overflow-hidden">
 
-                    <ul role="list" class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-                      <li class="pb-3 sm:pb-4">
-                          <div class="flex items-center space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                  Neil Sims
+                    <ul role="list" class="ml-8 max-w-lg divide-y divide-gray-200 dark:divide-gray-700" style="max-width: 90%;">
+                      <% @properties.each do |property| %>
+                        <li class="block hover:bg-gray-50">
+                          <%= link_to property_path(property) do %>
+                            <div class="flex items-center  px-4 py-4">
+                              <div class="flex-shrink-0">
+                                <%= image_tag property.default_image, class: "pl-2 w-12 h-12 rounded-full" %>
+                              </div>
+                              <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white truncate">
+                                  <%= property.name %>
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                  email@flowbite.com
+                                  <%= property.headline %>
                                 </p>
+                              </div>
+                              <div class="hidden sm:block  mr-12">
+                                <div class="sm:flex flex-col items-center text-sm text-gray-500" >
+                                  <p class="text-sm text-gray-900">
+                                    Created on
+                                    <time > <%= property.created_at.strftime("%d/%m/%Y") %> </time>
+                                  </p>
+                                  <p class="mt-2 flex items-center text-sm text-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="green" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-5 h-5 flex-shrink-0 text-green-400">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+
+                                    <%= property.reservations.future_reservations.size %> Active Reservations
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                              </div>
                             </div>
-                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                $320
-                            </div>
-                          </div>
-                      </li>
-                      <li class="py-3 sm:py-4">
-                          <div class="flex items-center space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Neil image">
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                  Bonnie Green
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                  email@flowbite.com
-                                </p>
-                            </div>
-                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                $3467
-                            </div>
-                          </div>
-                      </li>
-                      <li class="py-3 sm:py-4">
-                          <div class="flex items-center space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-2.jpg" alt="Neil image">
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                  Michael Gough
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                  email@flowbite.com
-                                </p>
-                            </div>
-                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                $67
-                            </div>
-                          </div>
-                      </li>
-                      <li class="py-3 sm:py-4">
-                          <div class="flex items-center space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="Neil image">
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                  Thomas Lean
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                  email@flowbite.com
-                                </p>
-                            </div>
-                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                $2367
-                            </div>
-                          </div>
-                      </li>
-                      <li class="pt-3 pb-0 sm:pt-4">
-                          <div class="flex items-center space-x-4">
-                            <div class="flex-shrink-0">
-                                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Neil image">
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                  Lana Byrd
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                  email@flowbite.com
-                                </p>
-                            </div>
-                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                $367
-                            </div>
-                          </div>
-                      </li>
+                          <% end %>
+                        </li>
+                      <% end %>
                     </ul>
 
                   </div>

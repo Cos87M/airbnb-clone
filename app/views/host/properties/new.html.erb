@@ -1,0 +1,93 @@
+<body class="bg-gray-300">
+
+  <div class="container z-50 mx-auto mt-6 bg-gray-100" style="width: 80%;">
+    <div class="max-w-7xl pb-8 lg:py-8 lg:px-4 xl:max-w-full">
+      <div class="flex justify-center mt-6">
+          <!-- Sidebar -->
+          <%= render "host/dashboard/sidebar" %>
+          <!-- Main Content -->
+          <div class="w-2/3 p-2">
+
+
+                <!-- Your sidebar Sections -->
+                <div class="bg-gray-100 px-4  border-gray-400 divide-y divide-gray-200 dark:divide-gray-700">
+                  <%= form_with model: @property, url: host_properties_path, local: true do |f| %>
+                    <div class="sm:overflow-hidden">
+                      <div class="bg-white py-6 px-4 space-y-4 sm:p-4" style="width: 90%;">
+
+                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
+
+                          <div class="lg:col-span-2 md:col-span-1">
+                            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+
+
+                              <div class="md:col-span-5 sm:col-span-4" style="width: 60%;">
+                                <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.text_field :name, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+
+                              <div class="md:col-span-5 sm:col-span-4" style="width: 60%;">
+                                <%= f.label :headline, class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.text_field :headline, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+
+
+                              <div class="md:col-span-5 sm:col-span-4">
+                                <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.text_field :description, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+
+                              <div class="md:col-span-5 sm:col-span-4">
+                                <%= f.label :address_1, class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.text_field :address_1, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+                               <div class="md:col-span-5 sm:col-span-4">
+                                <%= f.label :address_2, class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.text_field :address_2, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+
+                              <div class="md:col-span-5 sm:col-span-4">
+                                <%= f.label :city, class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.text_field :city, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+
+                              <div class="flex mb-4 md:col-span-5 sm:col-span-4">
+                                <div class="w-1/2 mr-2">
+                                  <%= f.label :country_code, class: "block text-sm font-medium text-gray-700" %>
+                                  <div class="relative">
+                                    <%= f.select :country_code, ISO3166::Country.all.map { |country| [country.translations[I18n.locale.to_s], country.alpha2] }, {}, class: "h-10 border border-gray-300 rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                                  </div>
+                                </div>
+                                <div class="md:col-span-1 w-1/2 ml-2">
+                                  <%= f.label :zip_code, class: "block text-sm font-medium text-gray-700" %>
+                                  <%= f.text_field :zip_code, class: "h-10 border border-gray-300 mt-1 block rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                                </div>
+                              </div>
+
+                              <div class="md:col-span-5 sm:col-span-4">
+                                <%= f.label :images, class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.file_field :images, class: "h-10 border border-gray-300 mt-1 block rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+
+                              <div class="md:col-span-5 text-right">
+                                <div class="inline-flex items-end">
+                                  <button class="bg-gray-400 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
