@@ -47,6 +47,7 @@ end
 
 8.times do |i|
   property = Property.create!(
+    user: me,
     name: Faker::Lorem.unique.word,
     headline: Faker::Lorem.unique.sentence,
     description: Faker::Lorem.paragraphs(number: 10).join(' '),

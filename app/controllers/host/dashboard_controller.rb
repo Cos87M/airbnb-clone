@@ -4,6 +4,7 @@ module Host
 
     def index
       authorize current_user, policy_class: HostPolicy
+      @properties = current_user.properties
     end
   end
 end
