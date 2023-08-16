@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
     # resources :properties, except: :index
     resources :properties, only: [:new, :create]
+
+    resources :payments, only: :index
   end
 
 end
