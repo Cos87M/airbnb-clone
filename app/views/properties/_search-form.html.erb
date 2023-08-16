@@ -1,0 +1,52 @@
+
+<%= form_with url:"", method: :get, local: true do |f| %>
+  <div class="space-y-8 divide-y divide-gray-200">
+      <div>
+        <h3 class="text-lg leading-6 font-medium text-gray-900">Search for property</h3>
+      </div>
+      <div class="space-y-6 sm:space-y-5">
+
+        <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <%= f.label :city, class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
+          <div class="mt-1 sm:mt-0 sm:col-span-1">
+
+            <%= f.text_field :city, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" %>
+          </div>
+        </div>
+
+        <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <%= f.label :country_code, "Country", class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
+          <div class="mt-1 sm:mt-0 sm:col-span-1">
+            <%= f.select :country_code,
+                        options_for_select(
+                          [['Germany', 'DE']] + ISO3166::Country.all.map { |country| [country.translations[I18n.locale.to_s], country.alpha2] },
+                          selected: @default_country_code
+                        ),
+                        { include_blank: 'Select a country' },
+                        class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
+            %>
+
+          </div>
+        </div>
+
+        <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <%= f.label :checkin, "Check-in", class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
+          <div class="mt-1 sm:mt-0 sm:col-span-1">
+            <%= f.text_field :checkin, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" %>
+          </div>
+        </div>
+
+        <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <%= f.label :checkout, class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
+          <div class="mt-1 sm:mt-0 sm:col-span-1">
+            <%= f.text_field :checkout, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" %>
+          </div>
+        </div>
+
+      </div>
+      <div class="flex justify-end pt-6">
+        <%= f.submit "Search", class: "cursor-pointer text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" %>
+      </div>
+  </div>
+
+<% end %>

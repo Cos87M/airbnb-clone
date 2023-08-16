@@ -11,7 +11,8 @@ export default class extends Controller {
     event.preventDefault();
 
     if (this.element.dataset.userLoggedIn === 'false') {
-      document.querySelector('[data-header-target="userAuthLink"]').click();
+      // document.querySelector('[data-header-target="userAuthLink"]').click();
+      Turbo.visit('/users/sign_in')
     }
 
     if (this.element.dataset.favorited === 'true') {

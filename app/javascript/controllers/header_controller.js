@@ -2,10 +2,17 @@ import { Controller } from "@hotwired/stimulus"
 import { toggle } from "el-transition"
 
 export default class extends Controller {
-  static targets = ['openUserMenu', 'userAuthLink'];
+  static targets = ['openUserMenu', 'userAuthLink','search'];
 
   connect() {
     // console.log("work")
+
+    // Search-form from navbar
+    this.searchTarget.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById(e.target.dataset.targetId).click();
+    })
+
     this.openUserMenuTarget.addEventListener('click', this.toggleDropdownMenu);
 
     this.userAuthLinkTargets.forEach((link)=> {
@@ -15,7 +22,9 @@ export default class extends Controller {
         this.closeDropdownMenu();
       });
     });
+
     document.addEventListener('click', this.closeDropdownMenuOutside);
+
   }
   disconnect() {
     document.removeEventListener('click', this.closeDropdownMenuOutside);
