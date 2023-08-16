@@ -40,7 +40,7 @@ RSpec.describe "Host::Properties", type: :request do
               name: "new property name"
             }
           }
-        end.not_to change { Property.count }
+        end.not_to(change { Property.count })
         expect(response).to be_successful
       end
     end
