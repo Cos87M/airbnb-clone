@@ -40,5 +40,8 @@ module AirbnbClone
     # Stripe key
     config.stripe.secret_key = ENV["STRIPE_SECRET_KEY"]
     config.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
+    # the following line is to configure cookies
+    config.action_dispatch.cookies_same_site_protection = :none
+
   end
 end

@@ -8,10 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.x.x/dist/tailwind.min.css" rel="stylesheet" as="style">
   <script defer src="https://unpkg.com/alpinejs@3.12.1/dist/cdn.min.js"></script>
 
-  <% if controller_name == "properties" && action_name == "show" %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.3/dist/css/datepicker.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.3/dist/js/datepicker.min.js"></script>
-  <% end %>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.3/dist/css/datepicker.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.3/dist/js/datepicker.min.js"></script>
 
   <script src="https://unpkg.com/axios@1.4.0/dist/axios.min.js"></script>
 
@@ -19,10 +18,11 @@
   <%= csp_meta_tag %>
   <%= javascript_importmap_tags %>
 
-  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload", preload: true, as: 'script' %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload", rel: "stylesheet", as: "style" %>
 
-  <%= javascript_include_tag 'es-module-shims.min', 'data-turbolinks-track': 'reload', preload: true, as: 'script' %>
+
+  <%= javascript_include_tag 'es-module-shims.min', 'data-turbolinks-track': 'reload', as: 'script' %>
 
   <%= favicon_link_tag asset_path("airbnb-favicon.png") %>
 

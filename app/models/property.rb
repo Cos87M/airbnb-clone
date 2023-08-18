@@ -25,6 +25,17 @@ class Property < ApplicationRecord
   CLEANING_FEE_MONEY = Money.new(CLEANING_FEE)
   SERVICE_FEE_PERCENTAGE = (0.1).freeze
 
+  scope :city, ->(city) { where("lower(city) like ?", "%#{city.downcase}%") }
+  scope :country_code, ->(country_code) { where("lower(country_code) like ?", "%#{country_code.downcase}%") }
+
+  # It will return a collection of properties that are available (not fully booked) or partially booked within the specified date range
+  scope :between_dates, ->(checkin, checkout) do
+    joins(:reservations)
+      .where.not("reservations.checkin_date < ?", Date.strptime(checkin, "%m/%d/%Y"))
+      .where.not("reservations.checkout_date > ?", Date.strptime(checkout, "%m/%d/%Y"))
+  end
+
+
   def address
     # [address_1, address_2, city, country_name].compact.join(', ')
     [city, country_name].compact.join(', ')
