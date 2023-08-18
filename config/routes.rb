@@ -8,9 +8,11 @@ Rails.application.routes.draw do
 
     resources :users, only: :show
 
-      get "/users_by_email" => "users_by_emails#show", as: :users_by_email
+    get "/users_by_email" => "users_by_emails#show", as: :users_by_email
 
   resources :favorites, only: [:create, :destroy]
+
+  get "/properties/search" => "properties/search#index"
 
   resources :properties, only: :show do
     resources :reservations, only: :new, controller: "property_reservations"
@@ -36,5 +38,6 @@ Rails.application.routes.draw do
 
     resources :payments, only: :index
   end
+
 
 end

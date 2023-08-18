@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { isEmpty } from 'lodash-es';
 import Swal from 'sweetalert2';
 
+
 export default class extends Controller {
   static targets = ['checkIn', 'checkOut', 'updateNumberOfNights', 'nightTotal', 'serviceFee','total'];
 

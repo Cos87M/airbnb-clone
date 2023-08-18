@@ -18,5 +18,4 @@ RSpec.describe "Host::Payments", type: :request do
       expect(response).to be_successful
     end
   end
-
 end
