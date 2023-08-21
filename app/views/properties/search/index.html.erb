@@ -1,21 +1,16 @@
 <div class="container mx-auto">
-  <ul>
-    <% @properties.each do |property| %>
-      <li>
-        <%= property.name %>
-        <% reservation_dates = @reservations_dates[property.id] %>
-        <% if reservation_dates.present? %>
-          <ul>
-            <% reservation_dates.each do |checkin_date, checkout_date| %>
-              <li>
-                Check-in: <%= checkin_date.strftime('%d-%m-%Y') %>, Check-out: <%= checkout_date.strftime('%d-%m-%Y') %>
-              </li>
-            <% end %>
-          </ul>
-        <% else %>
-          Available
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="grid grid-cols-5 gap-4">
+
+    <div class="col-span-2">
+      <ul role="list" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-1">
+
+        <%= render partial: "properties/property" %>
+
+      </ul>
+    </div>
+
+    <div class="col-span-3">
+      <h3>Map</h3>
+    </div>
+  </div>
 </div>

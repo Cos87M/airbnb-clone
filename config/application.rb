@@ -41,7 +41,15 @@ module AirbnbClone
     config.stripe.secret_key = ENV["STRIPE_SECRET_KEY"]
     config.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
     # the following line is to configure cookies
-    config.action_dispatch.cookies_same_site_protection = :none
+    # config.action_dispatch.cookies_same_site_protection = :none
+
+    #  # Configure secure cookies for cross-site requests
+    #  config.action_dispatch.cookies_same_site_protection = :none
+    #  config.ssl_options = { hsts: { preload: true, max_age: 31536000, include_subdomains: true } }
+
+    #  # Ensure cookies are only sent over HTTPS
+    # config.force_ssl = true
+    # config.session_store :cookie_store, key: '_airbnb_clone_session', secure: true, same_site: :none
 
   end
 end

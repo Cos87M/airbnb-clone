@@ -28,11 +28,11 @@ class Property < ApplicationRecord
   scope :city, ->(city) { where("lower(city) like ?", "%#{city.downcase}%") }
   scope :country_code, ->(country_code) { where("lower(country_code) like ?", "%#{country_code.downcase}%") }
 
-  # It will return a collection of properties that are available (not fully booked) or partially booked within the specified date range
-  scope :between_dates, ->(checkin, checkout) do
+  # It will return a collection of properties that are booked within the specified date range
+  scope :with_reservations_between_dates, ->(checkin, checkout) do
     joins(:reservations)
-      .where.not("reservations.checkin_date < ?", Date.strptime(checkin, "%m/%d/%Y"))
-      .where.not("reservations.checkout_date > ?", Date.strptime(checkout, "%m/%d/%Y"))
+      .where("reservations.checkout_date >= ?", Date.strptime(checkin, "%m/%d/%Y"))
+      .where("reservations.checkin_date <= ?", Date.strptime(checkout, "%m/%d/%Y"))
   end
 
 
