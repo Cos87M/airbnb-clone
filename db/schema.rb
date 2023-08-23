@@ -143,7 +143,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_192456) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.binary "photo"
     t.string "stripe_id"
     t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
