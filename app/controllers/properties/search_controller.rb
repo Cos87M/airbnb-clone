@@ -8,6 +8,14 @@ class Properties::SearchController < ApplicationController
 
     # preload_reservations_for_properties
     # collect_reservation_dates
+
+     # Build an array of markers including the current property
+      @markers = @properties.geocoded.map do |property|
+        {
+          lat: property.latitude,
+          lng: property.longitude
+        }
+      end
   end
 
   private

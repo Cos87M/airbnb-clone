@@ -9,8 +9,18 @@
       </ul>
     </div>
 
-    <div class="col-span-3">
-      <h3>Map</h3>
+    <div class="col-span-3 pt-4 pl-4">
+
+      <div style="width: 100%; height: 800px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          id="map"
+          class="map-container relative mb-20"
+      >
+
+      </div>
+
     </div>
   </div>
 </div>
