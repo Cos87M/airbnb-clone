@@ -297,7 +297,6 @@ DEPENDENCIES
   pundit
   rails (~> 7.0.4, >= 7.0.4.3)
   rspec-rails
-  ruby-vips (>= 2.0.17, < 3)
   sassc-rails
   shoulda-matchers (~> 5.0)
   sprockets-rails

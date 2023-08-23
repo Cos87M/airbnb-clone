@@ -17,3 +17,7 @@ pin "sweetalert2", to: "https://ga.jspm.io/npm:sweetalert2@11.7.20/dist/sweetale
 
 # Add the vanillajs-datepicker package
 # pin "vanillajs-datepicker", to: "https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.3/dist/js/datepicker.min.js"
+
+
+# Pin the mapbox-gl package
+# pin "mapbox-gl", to: "https://cdn.jsdelivr.net/npm/mapbox-gl@2.11.0/dist/mapbox-gl.js"
