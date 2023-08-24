@@ -15,8 +15,8 @@
     <div class="mb-4">
       <div class="relative flex items-center space-x-3">
         <div class="flex-shrink-0">
-          <% if @property.default_image.present? %>
-            <%= image_tag @property.default_image, class: "block h-14 w-14 w-full rounded-lg " %>
+          <% if @property.main_image.attached? %>
+              <%= image_tag @property.main_image, class: "block h-14 w-14 w-full rounded-lg" %>
           <% end %>
         </div>
         <div class="flex-1 min-w-0">

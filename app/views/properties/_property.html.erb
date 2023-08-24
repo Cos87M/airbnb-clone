@@ -2,7 +2,10 @@
   <div class="p-4">
     <a href="/properties/<%= property.id %>" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
       <div class="relative pb-48 overflow-hidden">
-        <%= image_tag(property.default_image, class: "absolute inset-0 h-full w-full object-cover") %>
+          <% if property.main_image.attached? %>
+            <%= image_tag(property.main_image, class: "absolute inset-0 h-full w-full object-cover") %>
+          <% end %>
+
 
         <svg  data-favorited = " <%= property.favorited_by?(current_user) %> "
               data-action = "click->favorites#favorite"

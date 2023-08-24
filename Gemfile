@@ -85,3 +85,5 @@ gem 'jsonapi-serializer'
 gem "stripe-rails"
 gem 'countries', '~> 5.0'
 gem "pundit"
+gem "cloudinary"
+gem 'open-uri'
