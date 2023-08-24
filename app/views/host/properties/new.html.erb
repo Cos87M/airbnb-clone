@@ -1,6 +1,6 @@
 <body class="bg-gray-300">
 
-  <div class="container z-50 mx-auto mt-6 bg-gray-100" style="width: 80%;">
+  <div class="container z-50 mx-auto mt-6 bg-gray-100" style="width: 90%;">
     <div class="max-w-7xl pb-8 lg:py-8 lg:px-4 xl:max-w-full">
       <div class="flex justify-center mt-6">
           <!-- Sidebar -->
@@ -41,10 +41,6 @@
                                 <%= f.label :address_1, class: "block text-sm font-medium text-gray-700" %>
                                 <%= f.text_field :address_1, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
                               </div>
-                               <div class="md:col-span-5 sm:col-span-4">
-                                <%= f.label :address_2, class: "block text-sm font-medium text-gray-700" %>
-                                <%= f.text_field :address_2, class: "h-10 border border-gray-300 mt-1 block  rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
-                              </div>
 
                               <div class="md:col-span-5 sm:col-span-4">
                                 <%= f.label :city, class: "block text-sm font-medium text-gray-700" %>
@@ -65,8 +61,13 @@
                               </div>
 
                               <div class="md:col-span-5 sm:col-span-4">
-                                <%= f.label :images, class: "block text-sm font-medium text-gray-700" %>
-                                <%= f.file_field :images, class: "h-10 border border-gray-300 mt-1 block rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                                <%= f.label :main_image, "Main image" , class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.file_field :main_image, class: "h-10 border border-gray-300 mt-1 block rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
+                              </div>
+
+                              <div class="md:col-span-5 sm:col-span-4">
+                                <%= f.label :secondary_images, "You need to add 4 more images to the gallery:", class: "block text-sm font-medium text-gray-700" %>
+                                <%= f.file_field :secondary_images, multiple: true, class: "h-10 border border-gray-300 mt-1 block rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
                               </div>
 
                               <div class="md:col-span-5 text-right">

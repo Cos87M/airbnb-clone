@@ -10,7 +10,8 @@ class Property < ApplicationRecord
 
 
   belongs_to :user
-  has_many_attached :images, dependent: :destroy
+  has_many_attached :secondary_images, dependent: :destroy
+  has_one_attached :main_image, dependent: :destroy
 
   # This association allows the Property model to have multiple reviews associated with it
   has_many :reviews, as: :reviewable
@@ -42,9 +43,14 @@ class Property < ApplicationRecord
     [city, country_name].compact.join(', ')
   end
 
-  def default_image
-    images.first
-  end
+  # def main_image
+  #   images.find_by(name: "property_#{self.id}_main_image.jpg")
+  # end
+
+  # def secondary_images
+  #   images.select { |image| image.name.to_s.match?(/^property_#{self.id}_secondary_\d+\.jpg$/) }
+  # end
+
   def favorited_by?(user)
     return if user.nil?
 

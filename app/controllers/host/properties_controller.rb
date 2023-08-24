@@ -11,7 +11,14 @@ class Host::PropertiesController < ApplicationController
     @property = current_user.properties.new(property_params)
 
     if @property.save
-      redirect_to host_dashboard_path
+      # Upload main image to Cloudinary
+      @property.main_image.attach(params[:property][:main_image])
+
+      # Upload secondary images to Cloudinary
+      params[:property][:secondary_images].each do |image|
+        @property.secondary_images.attach(image)
+      end
+        redirect_to host_dashboard_path
     else
       render :new
     end

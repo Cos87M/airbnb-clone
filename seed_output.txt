@@ -1,0 +1,20 @@
+Dropped database 'airbnb_clone_db'
+Dropped database 'airbnb_clone_db_test'
+Created database 'airbnb_clone_db'
+Created database 'airbnb_clone_db_test'
+Main image URL for property 1: https://res.cloudinary.com/dnmf6p8tj/image/upload/v1692828739/airbnb-clone/property_1/main_image.jpg
+Main image attachment not found for property 1
+Main image URL for property 2: https://res.cloudinary.com/dnmf6p8tj/image/upload/v1692828739/airbnb-clone/property_2/main_image.jpg
+Main image attachment not found for property 2
+Main image URL for property 3: https://res.cloudinary.com/dnmf6p8tj/image/upload/v1692828739/airbnb-clone/property_3/main_image.jpg
+Main image attachment not found for property 3
+Main image URL for property 4: https://res.cloudinary.com/dnmf6p8tj/image/upload/v1692828739/airbnb-clone/property_4/main_image.jpg
+Main image attachment not found for property 4
+Main image URL for property 5: https://res.cloudinary.com/dnmf6p8tj/image/upload/v1692828739/airbnb-clone/property_5/main_image.jpg
+Main image attachment not found for property 5
+Main image URL for property 6: https://res.cloudinary.com/dnmf6p8tj/image/upload/v1692828739/airbnb-clone/property_6/main_image.jpg
+Main image attachment not found for property 6
+Main image URL for property 7: https://res.cloudinary.com/dnmf6p8tj/image/upload/v1692828739/airbnb-clone/property_7/main_image.jpg
+Main image attachment not found for property 7
+Main image URL for property 8: https://res.cloudinary.com/dnmf6p8tj/image/upload/v1692828739/airbnb-clone/property_8/main_image.jpg
+Main image attachment not found for property 8

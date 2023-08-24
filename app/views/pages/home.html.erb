@@ -7,7 +7,7 @@
         data-longitude="<%= current_user&.profile&.longitude %>"
   >
     <ul class="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4 gap-1">
-      <%= render partial: 'properties/property' %>
+      <%= render partial: 'properties/property', locals: { property: @property } %>
     </ul>
   </div>
 
