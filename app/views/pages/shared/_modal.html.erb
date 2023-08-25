@@ -23,16 +23,16 @@
         <!-- Modal panel, show/hide based on modal state -->
 
         <div id="modal-<%= modal_trigger_id %>-panel"
-          x-transition:enter="transition ease-out duration-300 transform"
-          x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-          x-transition:leave="transition ease-in duration-200 transform"
-          x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-          x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          class="hidden inline-block w-full max-w-xl p-8  overflow-hidden text-left my-52 transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+            x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            class="hidden inline-block w-full max-w-3xl p-8 overflow-hidden text-left my-52 transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl z-50">
 
-           <%= render modal_content %>
+          <%= render modal_content %>
         </div>
+
     </div>
 </div>
-<%# content_params: content_params %>
