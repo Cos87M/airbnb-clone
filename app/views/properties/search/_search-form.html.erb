@@ -47,14 +47,14 @@
           <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
             <%= f.label :checkin_date, "Check-in", class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
             <div class="mt-1 sm:mt-0 sm:col-span-1">
-              <%= f.text_field :checkin_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500", placeholder: "22/09/2023", data: { "properties-search-target": "checkIn" }, required: true %>
+              <%= f.text_field :checkin_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500", placeholder: "22/09/2023", data: { "properties-search-target": "checkIn" }, autocomplete: "off", required: true %>
             </div>
           </div>
 
           <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
             <%= f.label :checkout_date, "Check out", class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
             <div class="mt-1 sm:mt-0 sm:col-span-1">
-              <%= f.text_field :checkout_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500", placeholder: "28/09/2023", data: { "properties-search-target": "checkOut" }, required: true %>
+              <%= f.text_field :checkout_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500", placeholder: "28/09/2023", data: { "properties-search-target": "checkOut" }, autocomplete: "off", required: true %>
             </div>
           </div>
 
