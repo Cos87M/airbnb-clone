@@ -28,7 +28,7 @@
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Service fee</dt>
-            <dd class="text-sm font-medium text-gray-900">€<%= number_to_currency(@service_fee, precision: 2) %></dd>
+            <dd class="text-sm font-medium text-gray-900"><%= number_to_currency(@service_fee, precision: 2, unit: '€') %></dd>
           </div>
           <div class="flex items-center justify-between border-t border-gray-200 pt-2">
             <dt class="text-base font-medium">Total</dt>
