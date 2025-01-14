@@ -10,8 +10,7 @@ export default class extends Controller {
     // console.log(this.element.dataset.latitude);
     // console.log(this.element.dataset.longitude);
 
-    // With this script, when you hover over the "description" elements, the hidden text will be displayed by expanding the element and clipping the overflow.
-    // When you move the mouse out, the element will be restored to its original state with ellipsis.
+    // Initialize description elements to show full text on hover
     const descrip = document.getElementsByClassName("descrip");
     Array.from(descrip).forEach(descrip => {
       const content = descrip.innerHTML;
@@ -27,24 +26,27 @@ export default class extends Controller {
       });
     });
 
+    // Check if latitude and longitude are not set, then get user's current position
     if (isEmpty(this.element.dataset.latitude) &&  isEmpty(this.element.dataset.longitude)) {
-      // Example usage of the isEmpty function
       window.navigator.geolocation.getCurrentPosition((position) => {
         this.setUserCoordonates(position.coords);
 
       });
     } else {
-
+      // If coordinates are already set, calculate and display distances
       this.setDistanceText();
     }
     // console.log(this.propertyTargets);
 
   }
+
+  // Set user's coordinates in the dataset
   setUserCoordonates(coordonates) {
     this.element.dataset.latitude = coordonates.latitude;
     this.element.dataset.longitude = coordonates.longitude;
   }
 
+  // Get user's coordinates from the dataset
   getUserCoordonates() {
     return {
       latitude: this.element.dataset.latitude,
@@ -52,17 +54,17 @@ export default class extends Controller {
     }
   }
 
+  // Calculate and set the distance text for each property target
   setDistanceText() {
     this.propertyTargets.forEach((propertyTarget) => {
       let distanceFrom = getDistance(
         this.getUserCoordonates(),
         { latitude: propertyTarget.dataset.latitude, longitude: propertyTarget.dataset.longitude },
       );
-        // Calculate the distance
+      // Calculate the distance in kilometers and round it
       var distanceInKm = convertDistance(distanceFrom, 'km');
-      // Round the distance to the nearest whole number
       var roundedDistance = Math.round(distanceInKm);
-      // propertyTarget.querySelector('[data-distance-away]').innerHTML = `${convertDistance((distanceFrom), 'km')} kilometers away`;
+      // Set the distance text in the property target
       propertyTarget.querySelector('[data-distance-away]').innerHTML = `${roundedDistance} kilometers away`;
     });
   }

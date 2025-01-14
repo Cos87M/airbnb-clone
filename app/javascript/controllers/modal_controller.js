@@ -5,8 +5,10 @@ export default class extends Controller {
   static targets = ["closeButton"];
 
   connect() {
+    // Get the trigger ID from the data attribute
     const triggerId = this.element.dataset.modalTriggerId;
 
+    // Add event listener to document to handle modal open/close
     document.addEventListener('click', (event) => {
       if (event.target.id === triggerId) {
         this.showModal(triggerId);
@@ -15,11 +17,13 @@ export default class extends Controller {
       }
     });
 
+    // Add event listener to close button to handle modal close
     this.closeButtonTarget.addEventListener('click', () => {
       this.closeModal(null, triggerId);
     });
   }
 
+  // Method to close the modal
   closeModal(event, triggerId) {
     const wrapperElement = document.getElementById(`modal-${triggerId}-wrapper`);
     const backdropElement = document.getElementById(`modal-${triggerId}-backdrop`);
@@ -34,6 +38,7 @@ export default class extends Controller {
     }
   }
 
+  // Method to show the modal
   showModal(triggerId) {
     const wrapperElement = document.getElementById(`modal-${triggerId}-wrapper`);
     const backdropElement = document.getElementById(`modal-${triggerId}-backdrop`);

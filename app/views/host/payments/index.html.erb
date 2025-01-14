@@ -17,9 +17,11 @@
                   <div class="-my-2 overflow-x-auto sm:-mx-6 1g:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 1g:px-8">
                       <div class="overflow-hidden border-t border-gray-200">
+                        <!-- Payments Table -->
                         <table class="min-w-full table-fixed divide-y divide-gray-200">
                           <thead class="bg-gray-50">
                             <tr>
+                              <!-- Table Headers -->
                               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                               <th scope="col" class="px-6 pv-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
                               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
@@ -29,24 +31,31 @@
                             </tr>
                           </thead>
                           <tbody class="bg-white divide-y divide-gray-200">
+                            <%# Check if there are any payments %>
                             <% if @payments.present? %>
+                              <%# Loop through each payment %>
                               <% @payments.each do |payment| %>
                                 <tr>
+                                  <!-- Payment Date -->
                                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     <time datetime="2020-01-01"><%= payment.created_at.strftime("%d/%m/%Y") %></time>
                                   </td>
+                                  <!-- Payment Description -->
                                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     <%= "#{payment.reservation.property.name} - #{payment.reservation.checkin_date.strftime("%d/%m/%Y")}" %>
                                   </td>
+                                  <!-- Payment Amount -->
                                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     <%= humanized_money_with_symbol(payment.total) %>
                                   </td>
+                                  <!-- View Property Link -->
                                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <%= link_to "View Property", property_path(payment.reservation.property), class: "text-orange-600 hover:text-orange-900", target: :_blank %>
                                   </td>
                                 </tr>
                               <% end %>
                             <% else %>
+                              <!-- No Payments Available Message -->
                               <tr>
                                 <td colspan="4" class="px-6 py-4 whitespace-nowrap text-md text-gray-500">No payments available.</td>
                               </tr>

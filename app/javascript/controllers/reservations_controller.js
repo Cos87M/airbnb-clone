@@ -2,23 +2,28 @@ import { Controller } from "@hotwired/stimulus";
 import { isEmpty } from 'lodash-es';
 import Swal from 'sweetalert2';
 
-
+// Define and export a Stimulus controller
 export default class extends Controller {
+  // Define the targets for the controller
   static targets = ['checkIn', 'checkOut', 'updateNumberOfNights', 'nightTotal', 'serviceFee','total'];
 
+  // Method called when the controller is connected to the DOM
   connect() {
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
     // console.log('nightPrice: ', this.element.dataset.nightPrice)
 
+    // Initialize the check-in date picker with a minimum date
     const checkinPicker = new Datepicker(this.checkInTarget, {
       minDate: today
     });
+    // Initialize the check-out date picker with a minimum date
     const checkoutPicker = new Datepicker(this.checkOutTarget, {
       minDate: tomorrow
     });
 
+    // Add an event listener to update the check-out date picker's minimum date when the check-in date changes
     this.checkInTarget.addEventListener('changeDate', (e) => {
       const date = new Date(e.target.value);
       date.setDate(date.getDate() + 1);
@@ -30,6 +35,7 @@ export default class extends Controller {
       this.updateTotal();
     });
 
+    // Add an event listener to update the check-in date picker's maximum date when the check-out date changes
     this.checkOutTarget.addEventListener('changeDate', (e) => {
       const date = new Date(e.target.value);
       date.setDate(date.getDate() - 1);
@@ -42,12 +48,14 @@ export default class extends Controller {
     });
   }
 
+  // Method to update the number of nights based on check-in and check-out dates
   updateNumberOfNights() {
     const numberOfNights = this.numberOfNights();
     this.updateNumberOfNightsTarget.textContent = numberOfNights;
     return numberOfNights; // Return the number of nights
   }
 
+  // Method to update the total cost for the nights
   updateNightTotal() {
     const numberOfNights = this.updateNumberOfNights();
     const nightPrice = parseFloat(this.element.dataset.nightPrice);
@@ -65,6 +73,7 @@ export default class extends Controller {
     return nightTotal; // Return the calculated value
   }
 
+  // Method to calculate the number of nights between check-in and check-out dates
   numberOfNights() {
     if (isEmpty(this.checkInTarget.value) || isEmpty(this.checkOutTarget.value)) {
       return 0;
@@ -86,6 +95,7 @@ export default class extends Controller {
     return differenceInDays;
   }
 
+  // Method to update the service fee based on the total cost for the nights
   updateServiceFee() {
     const nightTotal = parseFloat(this.nightTotalTarget.textContent);
     const serviceFeePercentage = parseFloat(this.element.dataset.serviceFee); // Parse the service fee percentage as a float
@@ -94,6 +104,8 @@ export default class extends Controller {
     this.updateTotal();
     return serviceFee;
   }
+
+  // Method to update the total cost including night total, service fee, and cleaning fee
   updateTotal() {
     const nightTotal = parseFloat(this.nightTotalTarget.textContent);
     const serviceFee = parseFloat(this.serviceFeeTarget.textContent);
@@ -103,7 +115,7 @@ export default class extends Controller {
     // console.log("serviceFee:", serviceFee);
     // console.log("cleaningFee:", cleaningFee);
 
-     // Check if any of the values are NaN
+    // Check if any of the values are NaN
     if (isNaN(nightTotal) || isNaN(serviceFee) || isNaN(cleaningFee)) {
       this.totalTarget.textContent = "NaN";
       return;
@@ -118,8 +130,9 @@ export default class extends Controller {
     // Update the total target with the formatted total
     this.totalTarget.textContent = formattedTotal;
     return formattedTotal;
-
   }
+
+  // Method to build the reservation parameters
   buildReservationParams() {
     // const differenceInDays = this.numberOfNights();
     // console.log('differenceInDays in buildReservationParams:', differenceInDays);
@@ -137,11 +150,13 @@ export default class extends Controller {
     return searchParams.toString();
   }
 
+  // Method to build the submit URL with reservation parameters
   buildSubmitUrl(url) {
     const params = this.buildReservationParams(); // Get the generated parameters
     return `${url}?${params}`;
   }
 
+  // Method to handle the reservation submission
   submitReservationComponent(e) {
     if (isEmpty(this.checkInTarget.value) || isEmpty(this.checkOutTarget.value)) {
       Swal.fire({

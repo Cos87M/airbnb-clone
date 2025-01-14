@@ -16,6 +16,7 @@
                       <h3 class="text-lg leading-6 font-medium text-gray-900">Add new properties</h3>
                     </div>
                     <div class="flex-shrink-0">
+                      <%# Link to create a new property %>
                       <%= link_to "Create new property", new_host_property_path, class:"relative inline-flex items-center px-4 py-2 border border-gray-250 text-sm font-medium text-black bg-gray-300 hover:bg-gray-500 focus:ring-offset-2 focus:ring-gray-500 shadow-sm" %>
                     </div>
                   </div>
@@ -24,9 +25,11 @@
                     <ul role="list" class="ml-8 max-w-lg divide-y divide-gray-200 dark:divide-gray-700" style="max-width: 90%;">
                       <% @properties.each do |property| %>
                         <li class="block hover:bg-gray-50">
+                          <%# Link to the property details page %>
                           <%= link_to property_path(property) do %>
                             <div class="flex items-center  px-4 py-4">
                               <div class="flex-shrink-0">
+                                <%# Display the main image of the property if available %>
                                 <% if property && property.main_image.present? %>
                                   <%= image_tag property.main_image, class: "pl-2 w-12 h-12 rounded-full" %>
                                 <% end %>

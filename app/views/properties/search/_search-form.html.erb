@@ -1,4 +1,5 @@
 <div>
+  <%# Form for searching properties %>
   <%= form_with url: properties_search_path,
       method: :get,
       local: true,
@@ -6,11 +7,11 @@
         controller: "properties-search",
         "default-checkin-date": "#{Date.tomorrow.strftime("%d/%m/%Y")}",
         "default-checkout-date": "#{(Date.tomorrow + 1.day).strftime("%d/%m/%Y")}"
-
       } do |f| %>
 
     <div class="space-y-8 divide-y divide-gray-200">
         <div class="flex justify-between">
+          <%# Title and close button for the search form %>
           <h3 class="text-lg leading-6 font-medium text-gray-900">Search for property</h3>
           <div class="flex justify-end" data-modal-target= "closeButton" >
             <button id="closeButton" class="cursor-pointer">
@@ -21,14 +22,15 @@
           </div>
         </div>
         <div class="space-y-8 sm:space-y-5">
+          <%# Input field for city %>
           <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
             <%= f.label :city, class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
             <div class="mt-1 sm:mt-0 sm:col-span-1">
-
               <%= f.text_field :city, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" %>
             </div>
           </div>
 
+          <%# Dropdown for selecting country %>
           <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
             <%= f.label :country_code, "Country", class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
             <div class="mt-1 sm:mt-0 sm:col-span-1">
@@ -40,10 +42,10 @@
                           { include_blank: 'Select a country' },
                           class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
               %>
-
             </div>
           </div>
 
+          <%# Input field for check-in date %>
           <div class="space-y-6 sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
             <%= f.label :checkin_date, "Check-in", class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
             <div class="mt-1 sm:mt-0 sm:col-span-1">
@@ -51,6 +53,7 @@
             </div>
           </div>
 
+          <%# Input field for check-out date %>
           <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
             <%= f.label :checkout_date, "Check out", class: "block ml-4 text-sm font-medium text-gray-700 dark:text-white sm:mt-px sm:pt-2" %>
             <div class="mt-1 sm:mt-0 sm:col-span-1">
@@ -59,6 +62,7 @@
           </div>
 
         </div>
+        <%# Submit button for the search form %>
         <div class="flex justify-end pt-6">
           <%= f.submit "Search", class: "cursor-pointer text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" %>
         </div>

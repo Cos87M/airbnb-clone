@@ -4,34 +4,44 @@
   <title>House&Party - Airbnb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <%# Link to Tailwind CSS stylesheet %>
   <%# <link rel="stylesheet" href="/assets/tailwind.css" as="style"> %>
   <link rel="stylesheet" href="<%= asset_path('tailwind.css') %>">
 
+  <%# Link to external Tailwind CSS stylesheet %>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.x.x/dist/tailwind.min.css" rel="stylesheet" as="style">
+  <%# Include Alpine.js for reactive components %>
   <script defer src="https://unpkg.com/alpinejs@3.12.1/dist/cdn.min.js"></script>
 
-
+  <%# Link to Vanilla JS Datepicker CSS and JS %>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.3/dist/css/datepicker.min.css">
   <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.3/dist/js/datepicker.min.js"></script>
 
+  <%# Include Axios for making HTTP requests %>
   <script src="https://unpkg.com/axios@1.4.0/dist/axios.min.js"></script>
 
-
+  <%# Link to Mapbox GL CSS and JS for maps %>
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
 
+  <%# Rails CSRF and CSP meta tags %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <%# Importmap for JavaScript modules %>
   <%= javascript_importmap_tags %>
 
+  <%# Link to Tailwind and Inter font stylesheets %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%# Link to application stylesheet %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload", rel: "stylesheet", as: "style" %>
 
-
+  <%# Include ES Module Shims for module support %>
   <%= javascript_include_tag 'es-module-shims.min', 'data-turbolinks-track': 'reload', as: 'script' %>
 
+  <%# Favicon for the application %>
   <%= favicon_link_tag asset_path("airbnb-favicon.png") %>
 
+  <%# Include Stripe JavaScript if on the new property reservation page %>
   <% if controller_name == "property_reservations" && action_name == "new" %>
     <%= stripe_javascript_tag %>
   <% end %>
@@ -39,7 +49,9 @@
 </head>
 
 <body>
+  <%# Render the header partial %>
   <%= render "layouts/header" %>
+  <%# Yield to the main content of the page %>
   <%= yield %>
 
 </body>

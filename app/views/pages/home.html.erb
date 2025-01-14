@@ -1,15 +1,16 @@
-
 <body class="antialiased bg-gray-100 text-gray-900 font-sans p-6">
 
+  <%# Container for geolocation data and property listings %>
   <div  data-controller="geolocation"
         class="container mx-auto py-12"
         data-latitude="<%= current_user&.profile&.latitude %>"
         data-longitude="<%= current_user&.profile&.longitude %>"
   >
+    <%# Grid layout for displaying properties %>
     <ul class="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-4 gap-1">
+      <%# Render the property partial for each property %>
       <%= render partial: 'properties/property', locals: { property: @property } %>
     </ul>
   </div>
-
 
 </body>

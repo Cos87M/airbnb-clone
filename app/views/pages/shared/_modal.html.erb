@@ -1,17 +1,17 @@
 <!-- Modal -->
 <div class="hidden  fixed inset-0 overflow-y-auto z-50 "
-    data-controller="modal"
-    id="modal-<%= modal_trigger_id %>-wrapper"
-    data-modal-trigger-id = "<%= modal_trigger_id %>"
+    data-controller="modal" <%# Stimulus controller for modal functionality %>
+    id="modal-<%= modal_trigger_id %>-wrapper" <%# Unique ID for the modal wrapper %>
+    data-modal-trigger-id = "<%= modal_trigger_id %>" <%# Data attribute for modal trigger ID %>
 
-    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    aria-labelledby="modal-title" role="dialog" aria-modal="true"> <%# ARIA attributes for accessibility %>
 
-  <div class="hidden" id="<%= modal_trigger_id %>" data-action="click->modal#showModal" ></div>
+  <div class="hidden" id="<%= modal_trigger_id %>" data-action="click->modal#showModal" ></div> <%# Hidden trigger element for showing the modal %>
 
         <!-- Background backdrop, show/hide base on modal state -->
 
     <div id="modal-<%= modal_trigger_id %>-backdrop"
-        class="hidden fixed inset-0 transition-opacity flex rounded-lg shadow-lg overflow-hidden mx-auto items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0 bg-gray-900 bg-opacity-50"
+        class="hidden fixed inset-0 transition-opacity flex rounded-lg shadow-lg overflow-hidden mx-auto items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0 bg-gray-900 bg-opacity-50" <%# Modal backdrop with transition effects %>
         x-transition:enter="transition ease-out duration-300 transform"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
@@ -29,9 +29,9 @@
             x-transition:leave="transition ease-in duration-200 transform"
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            class="hidden inline-block w-full max-w-3xl p-8 overflow-hidden text-left my-52 transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl z-50">
+            class="hidden inline-block w-full max-w-3xl p-8 overflow-hidden text-left my-52 transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl z-50"> <%# Modal panel with transition effects %>
 
-          <%= render modal_content %>
+          <%= render modal_content %> <%# Render the modal content %>
         </div>
 
     </div>

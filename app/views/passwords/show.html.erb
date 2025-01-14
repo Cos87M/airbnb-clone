@@ -1,13 +1,21 @@
+<%# Heading for the password update section %>
 <h4 class="mt-1 text-md text-gray-500">Update your Password</h4>
+<%# Horizontal line for visual separation %>
 <hr class="my-4">
+<%# Form for updating the user's password %>
 <%= form_with model: @user, scope: :password, local: true, url: password_path(@user) do |f| %>
 
+  <%# Container for the password input field %>
   <div class="flex flex-col">
+    <%# Label for the password input field %>
     <%= f.label :password, class: "block text-sm font-medium text-gray-700 mb-2" %>
+    <%# Password input field %>
     <%= f.password_field :password, class: "h-10 border border-gray-300 rounded px-4 py-2 w-full sm:text-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
   </div>
 
+  <%# Container for the submit button %>
   <div class="flex justify-end mt-4">
+    <%# Submit button to update the password %>
     <button class="bg-gray-400 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Update</button>
   </div>
 

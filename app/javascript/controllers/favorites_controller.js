@@ -1,20 +1,25 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+  // Headers for JSON requests
   HEADERS = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
 
   connect() {
+    // Method called when the controller is connected to the DOM
     // console.log("Favorites Controller connected!");
   }
 
   favorite(event) {
     event.preventDefault();
 
+    // Check if the user is logged in
     if (this.element.dataset.userLoggedIn === 'false') {
+      // Redirect to sign-in page if user is not logged in
       // document.querySelector('[data-header-target="userAuthLink"]').click();
       Turbo.visit('/users/sign_in')
     }
 
+    // Toggle favorite/unfavorite based on current state
     if (this.element.dataset.favorited === 'true') {
       this.unfavoriteProperty();
     } else {
@@ -22,10 +27,12 @@ export default class extends Controller {
     }
   }
 
+  // Get the path for creating a favorite
   getFavoritePath() {
     return '/favorites';
   }
 
+  // Get the path for deleting a favorite
   getUnFavoritePath(favoriteId) {
     return `/favorites/${favoriteId}`;
   }
@@ -41,6 +48,7 @@ export default class extends Controller {
       }
     };
 
+    // Send a POST request to create a favorite
     fetch(this.getFavoritePath(), {
       method: 'POST',
       headers: this.HEADERS,
@@ -48,6 +56,7 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then(responseData => {
+        // Update the element's dataset with the new favorite ID
         // console.log('Response Data:', responseData); // Log the entire response data
         const favoriteId = responseData.data && responseData.data.id;
         // console.log('Favorite ID:', favoriteId);
@@ -57,7 +66,6 @@ export default class extends Controller {
       })
       // .catch(error => console.error('Error creating favorite:', error));
       .catch(error => console.error('Error creating favorite:', error, error.response));
-
   }
 
   unfavoriteProperty() {
@@ -67,6 +75,7 @@ export default class extends Controller {
     if (favoriteId) {
       const url = this.getUnFavoritePath(favoriteId);
       // console.log('DELETE URL:', url); // Log the DELETE URL
+      // Send a DELETE request to remove the favorite
       fetch(url, {
         method: 'DELETE',
         headers: this.HEADERS
@@ -74,6 +83,7 @@ export default class extends Controller {
         .then(response => {
           // console.log('response:', response);
           if (response.ok) {
+            // Update the element's dataset to reflect the unfavorited state
             this.element.dataset.favorited = 'false';
             this.element.removeAttribute('data-favorite-id');
             this.element.setAttribute('fill', this.element.dataset.unfavoritedColor);
