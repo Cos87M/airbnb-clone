@@ -87,3 +87,4 @@ gem 'countries', '~> 5.0'
 gem "pundit"
 gem "cloudinary"
 gem 'open-uri'
+gem 'stringio', '~> 3.1.2'
